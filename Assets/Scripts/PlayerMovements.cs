@@ -27,14 +27,14 @@ public class PlayerMovements : MonoBehaviour
     {
         moveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
-        if (facingR == false && moveInput > 0)
-        {
-            Flip();
-        }
-        else if (facingR == true && moveInput < 0)
-        {
-            Flip();
-        }
+        //if (facingR == false && moveInput > 0)
+        //{
+        //    Flip();
+        //}
+        //else if (facingR == true && moveInput < 0)
+        //{
+        //    Flip();
+        //}
     }
 
     private void Update()
