@@ -164,6 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 421541800}
   - component: {fileID: 421541804}
+  - component: {fileID: 421541805}
   - component: {fileID: 421541803}
   - component: {fileID: 421541802}
   - component: {fileID: 421541801}
@@ -301,6 +302,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &421541805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 421541799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41945d776b54f25419ddc0e08591f007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullet: {fileID: 7591305216544584918, guid: 29f763929cbb8864e982ce0e75c8e86e, type: 3}
+  BulletTransform: {fileID: 837077365}
+  StartTimeFire: 0.15
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
