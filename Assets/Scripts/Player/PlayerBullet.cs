@@ -8,7 +8,7 @@ public class PlayerBullet : MonoBehaviour
     public float speed;
     void Start()
     {
-        rb= GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * speed;
         Invoke("DestroyTime", 2f);
     }
@@ -23,8 +23,11 @@ public class PlayerBullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D hitInfo)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        Destroy(gameObject);
+        if (col.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
     }
 }
