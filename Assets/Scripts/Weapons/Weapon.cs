@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Animator anim;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            anim.SetTrigger("AttackStart");
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                anim.SetTrigger("ContinueAttack");
+            }
+            else anim.SetTrigger("StopAttack");
+        }
+        else anim.SetTrigger("StopAttack");
     }
 }
