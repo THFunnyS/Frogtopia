@@ -7,6 +7,7 @@ TagManager:
   - PlayerTongue
   - Enemy
   - PlayerBullet
+  - Weapon
   layers:
   - Default
   - TransparentFX
