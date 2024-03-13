@@ -29,7 +29,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "PlayerBullet")
+        if (col.tag == "PlayerBullet" || col.tag == "Weapon")
         {
             lives--;
         }
