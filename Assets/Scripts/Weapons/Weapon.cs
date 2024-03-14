@@ -7,7 +7,7 @@ public class Weapon : MonoBehaviour
     public Animator anim;
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -19,8 +19,6 @@ public class Weapon : MonoBehaviour
             {
                 anim.SetTrigger("ContinueAttack");
             }
-            else anim.SetTrigger("StopAttack");
         }
-        else anim.SetTrigger("StopAttack");
     }
 }
