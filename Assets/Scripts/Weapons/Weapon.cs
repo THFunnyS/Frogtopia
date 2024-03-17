@@ -15,10 +15,11 @@ public class Weapon : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0))
         {
             anim.SetTrigger("AttackStart");
-            if (Input.GetKey(KeyCode.Mouse0))
-            {
-                anim.SetTrigger("ContinueAttack");
-            }
+            
+        }
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            anim.SetTrigger("ContinueAttack");
         }
     }
 }
