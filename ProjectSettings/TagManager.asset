@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - PlayerBullet
   - Weapon
+  - PickableItem
+  - PickableWeapon
   layers:
   - Default
   - TransparentFX
