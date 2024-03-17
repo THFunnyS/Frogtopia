@@ -15,10 +15,5 @@ public class TongueAttack : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse1)) {
             anim.SetTrigger("attack");
         }
-        else anim.SetTrigger("stop");
-        //if (!Input.GetKey(KeyCode.Mouse1))
-        //{
-        //    anim.SetTrigger("stop");
-        //}
     }
 }
