@@ -855,6 +855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   jumpForce: 4
+  canDoubleJump: 1
   feetPos: {fileID: 236349540}
   checkRadius: 0.3
   Ground:
