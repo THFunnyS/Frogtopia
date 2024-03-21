@@ -5,9 +5,11 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public Animator anim;
+
+    public GameObject weaponIcon;
     void Start()
     {
-
+        
     }
 
     void Update()

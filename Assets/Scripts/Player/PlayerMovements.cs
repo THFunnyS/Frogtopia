@@ -15,6 +15,8 @@ public class PlayerMovements : MonoBehaviour
     public float checkRadius;
     public LayerMask Ground;
 
+    public bool isArmed = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
