@@ -7,11 +7,11 @@ public class PickableWeapon : MonoBehaviour
 {
     public Transform Player;
     public GameObject weapon;
-    public GameObject weaponPlace;
+    public Transform weaponPlace;
     public GameObject pickUpWeaponButton;
     bool pickable = false;
     bool isArmed;
-    public GameObject currentWeapon;
+    public Transform currentWeapon;
     GameObject currentWeaponChild;
     GameObject currentWeaponIcon;
 
@@ -24,6 +24,8 @@ public class PickableWeapon : MonoBehaviour
     public Image icon;
     void Start()
     {
+        weaponPlace = GameObject.FindGameObjectWithTag("PlayerWeaponPlace").GetComponent<Transform>();
+        currentWeapon = GameObject.FindGameObjectWithTag("PlayerWeaponPlace").GetComponent<Transform>();
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         StartPos = transform.position;
     }
@@ -33,6 +35,7 @@ public class PickableWeapon : MonoBehaviour
         t += Time.deltaTime;
         Offset = Amp * Mathf.Sin(t * Freq);
         transform.position = StartPos + new Vector2(0, Offset);
+
         if (Mathf.Abs(transform.position.x - Player.transform.position.x) < 1.8f)
         {
             pickable = true;
@@ -51,7 +54,7 @@ public class PickableWeapon : MonoBehaviour
     {
         if (pickable == true && Input.GetKeyDown(KeyCode.E))
         {
-            icon.GetComponent<Image>().sprite = weapon.GetComponent<SpriteRenderer>().sprite;
+            icon.GetComponent<Image>().sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
             Instantiate(weapon, weaponPlace.transform);
             currentWeaponChild = currentWeapon.transform.GetChild(0).gameObject;
             if (isArmed == true)
@@ -66,7 +69,7 @@ public class PickableWeapon : MonoBehaviour
     void DropCurrentWeapon()
     {
         currentWeaponIcon = currentWeaponChild.GetComponent<Weapon>().weaponIcon;
-        Instantiate(currentWeaponIcon, Player.position, Quaternion.identity);
+        Instantiate(currentWeaponIcon, Player.transform.position, Quaternion.identity);
         Destroy(currentWeaponChild);
     }
 }

@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e2df54570535c504ba3f596f58cb6a57, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 3080105636430044330}
-  weaponIcon: {fileID: 7487813023191679292, guid: 9a4a888cb12ab9b4f9ff4a55f8dbcfd8, type: 3}
+  weaponIcon: {fileID: 7194477849238747012, guid: 9a4a888cb12ab9b4f9ff4a55f8dbcfd8, type: 3}
 --- !u!68 &3080105636430044333
 EdgeCollider2D:
   m_ObjectHideFlags: 0
