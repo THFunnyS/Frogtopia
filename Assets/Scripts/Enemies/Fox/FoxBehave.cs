@@ -5,15 +5,17 @@ using System;
 using static AlertSign;
 
 
-public class WolfBehave : MonoBehaviour
+public class FoxBehave : MonoBehaviour
 {
     public float speed;
     public float dashSpeed;
     public float dashTime;
     public float longDist;
+    public float lieDist;
     public float triggerDist;
     public Transform[] patrolPoints;
-    public AlertSign alert;
+    public AlertSign alert1;
+    public AlertSign alert2;
 
     private Rigidbody2D body;
     private Transform target;
@@ -56,15 +58,24 @@ public class WolfBehave : MonoBehaviour
         }
 
         // подходим
-        else if (Math.Abs(target.position.x - transform.position.x) < longDist && Math.Abs(target.position.x - transform.position.x) > triggerDist && dashFlag)
+        else if (Math.Abs(target.position.x - transform.position.x) < longDist && Math.Abs(target.position.x - transform.position.x) > lieDist && dashFlag)
         {
             dir = CalcDistance(target.position.x, transform.position.x, speed);
             body.velocity = new Vector2(dir, body.velocity.y);
         }
+
+        // ложный рывок
+        else if (Math.Abs(target.position.x - transform.position.x) <= lieDist && Math.Abs(target.position.x - transform.position.x) > triggerDist && dashFlag)
+        {
+            alert1.Show();
+            dir = CalcDistance(target.position.x, transform.position.x, speed);
+            body.velocity = new Vector2(dir, body.velocity.y);
+        }
+
         // рывок
         else if (Math.Abs(target.position.x - transform.position.x) <= triggerDist && dashFlag)
         {
-            alert.Show();
+            alert2.Show();
             dir = CalcDistance(target.position.x, transform.position.x, dashSpeed);
             body.velocity = new Vector2(dir, body.velocity.y);
         }
@@ -100,7 +111,8 @@ public class WolfBehave : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            alert.Hide();
+            alert1.Hide();
+            alert2.Hide();
             dashFlag = false;
             restFlag = false;
             body.velocity = new Vector2(0, body.velocity.y);
