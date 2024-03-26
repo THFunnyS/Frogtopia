@@ -947,6 +947,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5628743029211292828}
   - component: {fileID: 5628743029211292829}
+  - component: {fileID: 3216346177838354207}
   - component: {fileID: 5628743029211292830}
   - component: {fileID: 5628743029211292831}
   m_Layer: 0
@@ -993,11 +994,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   jumpForce: 4
+  rb: {fileID: 0}
+  isGrounded: 0
   feetPos: {fileID: 5628743028845418451}
   checkRadius: 0.3
   Ground:
     serializedVersion: 2
     m_Bits: 64
+  isArmed: 0
+--- !u!114 &3216346177838354207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628743029211292820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 369672caa8c3f1948846681c957cef01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  jumpForce: 0
+  rb: {fileID: 0}
+  isGrounded: 0
+  feetPos: {fileID: 0}
+  checkRadius: 0
+  Ground:
+    serializedVersion: 2
+    m_Bits: 0
   isArmed: 0
 --- !u!70 &5628743029211292830
 CapsuleCollider2D:
