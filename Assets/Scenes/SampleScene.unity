@@ -905,11 +905,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 356759494064034288, guid: 034810b6563c19a4a9375a866a605e82, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -27.5
+      value: -6.77
       objectReference: {fileID: 0}
     - target: {fileID: 356759494064034288, guid: 034810b6563c19a4a9375a866a605e82, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.07
+      value: 0.63
       objectReference: {fileID: 0}
     - target: {fileID: 356759494064034288, guid: 034810b6563c19a4a9375a866a605e82, type: 3}
       propertyPath: m_LocalPosition.z
@@ -943,13 +943,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 356759494064034289, guid: 034810b6563c19a4a9375a866a605e82, type: 3}
+      propertyPath: lives
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 356759494064034291, guid: 034810b6563c19a4a9375a866a605e82, type: 3}
       propertyPath: m_Name
       value: Fly
       objectReference: {fileID: 0}
     - target: {fileID: 356759494064034291, guid: 034810b6563c19a4a9375a866a605e82, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 034810b6563c19a4a9375a866a605e82, type: 3}
@@ -1361,6 +1365,18 @@ PrefabInstance:
     - target: {fileID: 3216346177838354207, guid: c0821de766bd4484291c4f017809caa4, type: 3}
       propertyPath: canDoubleJump
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628743028496648218, guid: c0821de766bd4484291c4f017809caa4, type: 3}
+      propertyPath: Damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628743028496648218, guid: c0821de766bd4484291c4f017809caa4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628743028496648220, guid: c0821de766bd4484291c4f017809caa4, type: 3}
+      propertyPath: Damage
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5628743029211292820, guid: c0821de766bd4484291c4f017809caa4, type: 3}
       propertyPath: m_Name

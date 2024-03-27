@@ -5,6 +5,7 @@ using UnityEngine;
 public class TongueAttack : MonoBehaviour
 {
     public Animator anim;
+    public int Damage;
     void Start()
     {
         

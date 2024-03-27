@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 8605446308102800333}
   weaponIcon: {fileID: 1327252813729720744, guid: 0005809ed98f0df41b241d83388dd6fb, type: 3}
+  Damage: 2
 --- !u!68 &8605446308102800335
 EdgeCollider2D:
   m_ObjectHideFlags: 0
