@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 163293702926039698}
   weaponIcon: {fileID: 830929478919956021, guid: 66461a8542640c542b39cb362e7c55ab, type: 3}
+  Damage: 4
 --- !u!95 &163293702926039698
 Animator:
   serializedVersion: 5
