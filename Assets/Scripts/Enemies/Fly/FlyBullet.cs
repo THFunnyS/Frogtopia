@@ -25,4 +25,12 @@ public class FlyBullet : MonoBehaviour
 
         _rb.velocity = new Vector2(StartVelocityX, 0f);
     }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Player")
+        {
+            Destroy(gameObject);
+        }
+    }
 }

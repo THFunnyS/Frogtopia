@@ -7,7 +7,9 @@ public class PickableMutation : MonoBehaviour
 {
     public Transform Player;
     public string Tag;
+    public string script;
     GameObject MutatedPart;
+
 
     public GameObject pickUpMutationButton;
     bool pickable = false;
@@ -48,6 +50,7 @@ public class PickableMutation : MonoBehaviour
     {
         if (pickable == true && Input.GetKeyDown(KeyCode.E))
         {
+            (MutatedPart.GetComponent(script) as MonoBehaviour).enabled = true;
             Destroy(gameObject);
         }
     }

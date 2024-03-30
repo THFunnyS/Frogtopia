@@ -10,7 +10,6 @@ TagManager:
   - Weapon
   - PickableItem
   - PickableWeapon
-  - PlayerWeaponPlace
   - EnemyBullet
   layers:
   - Default

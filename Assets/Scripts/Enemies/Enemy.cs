@@ -43,7 +43,7 @@ public abstract class Enemy : MonoBehaviour
                 lives -= TakenDamage;
                 break;
             case "Weapon":
-                currentWeapon = GameObject.FindGameObjectWithTag("PlayerWeaponPlace").GetComponent<Transform>();
+                currentWeapon = GameObject.Find("Weapon").GetComponent<Transform>();
                 TakenDamage = currentWeapon.transform.GetChild(0).gameObject.GetComponent<Weapon>().Damage;
                 lives -= TakenDamage;
                 break;

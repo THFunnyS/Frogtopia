@@ -24,8 +24,8 @@ public class PickableWeapon : MonoBehaviour
     public Image icon;
     void Start()
     {
-        weaponPlace = GameObject.FindGameObjectWithTag("PlayerWeaponPlace").GetComponent<Transform>();
-        currentWeapon = GameObject.FindGameObjectWithTag("PlayerWeaponPlace").GetComponent<Transform>();
+        weaponPlace = GameObject.Find("Weapon").GetComponent<Transform>();
+        currentWeapon = GameObject.Find("Weapon").GetComponent<Transform>();
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         StartPos = transform.position;
     }
