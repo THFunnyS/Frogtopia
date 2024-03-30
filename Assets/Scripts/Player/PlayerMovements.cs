@@ -42,16 +42,16 @@ public class PlayerMovements : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Enemy")
+        switch (col.tag)
         {
-            TakenDamage = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>().DealtDamage;
-            lives -= TakenDamage;
-        }
-
-        if (col.tag == "EnemyBullet")
-        {
-            TakenDamage = GameObject.FindGameObjectWithTag("EnemyBullet").GetComponent<FlyBullet>().Damage;
-            lives -= TakenDamage;
+            case "Enemy":
+                TakenDamage = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>().DealtDamage;
+                lives -= TakenDamage;
+                break;
+            case "EnemyBullet":
+                TakenDamage = GameObject.FindGameObjectWithTag("EnemyBullet").GetComponent<FlyBullet>().Damage;
+                lives -= TakenDamage;
+                break;
         }
     }
 }
