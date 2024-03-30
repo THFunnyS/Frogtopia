@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovements : MonoBehaviour
 {
+    public int lives;
+    private int TakenDamage;
     public float speed;
     public float jumpForce;
     private float moveInput;
@@ -16,6 +19,8 @@ public class PlayerMovements : MonoBehaviour
     public LayerMask Ground;
 
     public bool isArmed = false;
+
+    public Image healthBar;
 
     private void Start()
     {
@@ -30,7 +35,23 @@ public class PlayerMovements : MonoBehaviour
 
     private void Update()
     {
+        healthBar.fillAmount = (float)lives / 10;
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, Ground);
         if (isGrounded && Input.GetKeyDown(KeyCode.Space)) { rb.velocity = Vector2.up * jumpForce; }
+    }
+
+    public void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Enemy")
+        {
+            TakenDamage = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>().DealtDamage;
+            lives -= TakenDamage;
+        }
+
+        if (col.tag == "EnemyBullet")
+        {
+            TakenDamage = GameObject.FindGameObjectWithTag("EnemyBullet").GetComponent<FlyBullet>().Damage;
+            lives -= TakenDamage;
+        }
     }
 }

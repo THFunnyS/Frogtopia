@@ -4,6 +4,7 @@ public abstract class Enemy : MonoBehaviour
 {
     public int lives;
     private int TakenDamage;
+    public int DealtDamage;
     public float AgressDistance = 10f;
     public float Speed = 5f;
     public float RestTime = 2f;
@@ -31,24 +32,21 @@ public abstract class Enemy : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-
-        if (col.tag == "PlayerBullet")
+        switch (col.tag)
         {
-            TakenDamage = GameObject.FindGameObjectWithTag("PlayerBullet").GetComponent<PlayerBullet>().Damage;
-            lives -= TakenDamage;
-        }
-
-        if (col.tag == "PlayerTongue")
-        {
-            TakenDamage = GameObject.FindGameObjectWithTag("PlayerTongue").GetComponent<TongueAttack>().Damage;
-            lives -= TakenDamage;
-        }
-
-        if (col.tag == "Weapon")
-        {
-            currentWeapon = GameObject.FindGameObjectWithTag("PlayerWeaponPlace").GetComponent<Transform>();
-            TakenDamage = currentWeapon.transform.GetChild(0).gameObject.GetComponent<Weapon>().Damage;
-            lives -= TakenDamage;
+            case "PlayerBullet":
+                TakenDamage = GameObject.FindGameObjectWithTag("PlayerBullet").GetComponent<PlayerBullet>().Damage;
+                lives -= TakenDamage;
+                break;
+            case "PlayerTongue":
+                TakenDamage = GameObject.FindGameObjectWithTag("PlayerTongue").GetComponent<TongueAttack>().Damage;
+                lives -= TakenDamage;
+                break;
+            case "Weapon":
+                currentWeapon = GameObject.FindGameObjectWithTag("PlayerWeaponPlace").GetComponent<Transform>();
+                TakenDamage = currentWeapon.transform.GetChild(0).gameObject.GetComponent<Weapon>().Damage;
+                lives -= TakenDamage;
+                break;
         }
     }
 }

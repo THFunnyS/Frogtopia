@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 305432084097473665}
   m_Layer: 0
   m_Name: Fly Bullet
-  m_TagString: Untagged
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,3 +136,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb6cd42a88a5ac49aa30129d41d37d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Damage: 2

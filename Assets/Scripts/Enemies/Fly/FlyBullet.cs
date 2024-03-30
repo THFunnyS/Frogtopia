@@ -2,10 +2,11 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Bullet : MonoBehaviour
+public class FlyBullet : MonoBehaviour
 {
     private Rigidbody2D _rb;
     private Transform _target;
+    public int Damage;
 
     private void Awake()
     {

@@ -384,6 +384,7 @@ GameObject:
   - component: {fileID: 5628743028496648219}
   - component: {fileID: 5628743028496648218}
   - component: {fileID: 5628743028496648220}
+  - component: {fileID: 7054450062365495489}
   - component: {fileID: 5628743028496648221}
   - component: {fileID: 5628743028496648222}
   m_Layer: 0
@@ -488,6 +489,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 5628743028496648221}
+  Damage: 0
+--- !u!114 &7054450062365495489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628743028496648208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986c61cdc9d421445b1ca164ea63b400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
 --- !u!95 &5628743028496648221
 Animator:
   serializedVersion: 5
@@ -994,8 +1009,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   jumpForce: 4
-  rb: {fileID: 0}
-  isGrounded: 0
   feetPos: {fileID: 5628743028845418451}
   checkRadius: 0.3
   Ground:
@@ -1014,16 +1027,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369672caa8c3f1948846681c957cef01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  jumpForce: 0
-  rb: {fileID: 0}
-  isGrounded: 0
-  feetPos: {fileID: 0}
-  checkRadius: 0
-  Ground:
-    serializedVersion: 2
-    m_Bits: 0
-  isArmed: 0
 --- !u!70 &5628743029211292830
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
