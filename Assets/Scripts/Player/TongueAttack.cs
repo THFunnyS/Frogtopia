@@ -6,6 +6,7 @@ public class TongueAttack : MonoBehaviour
 {
     public Animator anim;
     public int Damage;
+    public bool Knockback = false;
     void Start()
     {
         

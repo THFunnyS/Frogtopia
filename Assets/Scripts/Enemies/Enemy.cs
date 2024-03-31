@@ -41,6 +41,10 @@ public abstract class Enemy : MonoBehaviour
             case "PlayerTongue":
                 TakenDamage = GameObject.FindGameObjectWithTag("PlayerTongue").GetComponent<TongueAttack>().Damage;
                 lives -= TakenDamage;
+                if (GameObject.FindGameObjectWithTag("PlayerTongue").GetComponent<TongueKnockback>().isActive == true)
+                {
+                    transform.position -= Target.position;
+                }
                 break;
             case "Weapon":
                 currentWeapon = GameObject.Find("Weapon").GetComponent<Transform>();

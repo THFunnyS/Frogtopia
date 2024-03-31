@@ -8,12 +8,11 @@ public class PickableMutation : MonoBehaviour
     public Transform Player;
     public string Tag;
     public string script;
+    //public string effect;
     GameObject MutatedPart;
-
 
     public GameObject pickUpMutationButton;
     bool pickable = false;
-
 
     float t = 0;
     float Offset = 0;
@@ -22,6 +21,7 @@ public class PickableMutation : MonoBehaviour
     Vector2 StartPos;
     void Start()
     {
+        
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         MutatedPart = GameObject.FindGameObjectWithTag(Tag);
         StartPos = transform.position;

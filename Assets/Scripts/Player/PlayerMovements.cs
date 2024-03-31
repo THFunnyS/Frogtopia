@@ -21,6 +21,8 @@ public class PlayerMovements : MonoBehaviour
     public bool isArmed = false;
 
     public Image healthBar;
+    public AudioClip pain;
+    private bool isInvulnerable = false;
 
     private void Start()
     {
@@ -37,21 +39,49 @@ public class PlayerMovements : MonoBehaviour
     {
         healthBar.fillAmount = (float)lives / 10;
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, Ground);
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Physics2D.IgnoreLayerCollision(3, 7, true);
+            Invoke("IgnoreLayerOff", 0.5f);
+        }
+
         if (isGrounded && Input.GetKeyDown(KeyCode.Space)) { rb.velocity = Vector2.up * jumpForce; }
     }
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        switch (col.tag)
+        if (!isInvulnerable)
         {
-            case "Enemy":
-                TakenDamage = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>().DealtDamage;
-                lives -= TakenDamage;
-                break;
-            case "EnemyBullet":
-                TakenDamage = GameObject.FindGameObjectWithTag("EnemyBullet").GetComponent<FlyBullet>().Damage;
-                lives -= TakenDamage;
-                break;
+            switch (col.tag)
+            {
+                case "Enemy":
+                    TakenDamage = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>().DealtDamage;
+                    lives -= TakenDamage;
+                    isInvulnerable = true;
+                    AudioSource.PlayClipAtPoint(pain, transform.position);
+                    StartCoroutine(setInvulnerability(1.5f));
+                    break;
+                case "EnemyBullet":
+                    TakenDamage = GameObject.FindGameObjectWithTag("EnemyBullet").GetComponent<FlyBullet>().Damage;
+                    lives -= TakenDamage;
+                    isInvulnerable = true;
+                    AudioSource.PlayClipAtPoint(pain, transform.position);
+                    StartCoroutine(setInvulnerability(1.5f));
+                    break;
+            }
         }
+    }
+
+    private IEnumerator setInvulnerability(float time)
+    {
+        isInvulnerable = true;
+        yield return new WaitForSeconds(time);
+        isInvulnerable = false;
+    }
+
+    void IgnoreLayerOff()
+    {
+        Physics2D.IgnoreLayerCollision(3, 7, false);
     }
 }
