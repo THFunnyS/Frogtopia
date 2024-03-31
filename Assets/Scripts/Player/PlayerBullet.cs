@@ -6,6 +6,7 @@ public class PlayerBullet : MonoBehaviour
 {
     Rigidbody2D rb;
     public float speed;
+    public int Damage;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();

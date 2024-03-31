@@ -2,11 +2,14 @@
 
 public abstract class Enemy : MonoBehaviour
 {
-    public int lives = 5;
+    public int lives;
+    private int TakenDamage;
+    public int DealtDamage;
     public float AgressDistance = 10f;
     public float Speed = 5f;
     public float RestTime = 2f;
 
+    private Transform currentWeapon;
     public Transform Target { get; set; }
     public StateMachine SM { get; set; }
 
@@ -29,9 +32,25 @@ public abstract class Enemy : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "PlayerBullet" || col.tag == "Weapon")
+        switch (col.tag)
         {
-            lives--;
+            case "PlayerBullet":
+                TakenDamage = GameObject.FindGameObjectWithTag("PlayerBullet").GetComponent<PlayerBullet>().Damage;
+                lives -= TakenDamage;
+                break;
+            case "PlayerTongue":
+                TakenDamage = GameObject.FindGameObjectWithTag("PlayerTongue").GetComponent<TongueAttack>().Damage;
+                lives -= TakenDamage;
+                if (GameObject.FindGameObjectWithTag("PlayerTongue").GetComponent<TongueKnockback>().isActive == true)
+                {
+                    transform.position -= Target.position;
+                }
+                break;
+            case "Weapon":
+                currentWeapon = GameObject.Find("Weapon").GetComponent<Transform>();
+                TakenDamage = currentWeapon.transform.GetChild(0).gameObject.GetComponent<Weapon>().Damage;
+                lives -= TakenDamage;
+                break;
         }
     }
 }
