@@ -10,6 +10,8 @@ public class PlayerMovements : MonoBehaviour
     public float speed;
     public float jumpForce;
     private float moveInput;
+    public bool canDoubleJump;
+    private bool canJump;
 
     private Rigidbody2D rb;
 
@@ -39,6 +41,7 @@ public class PlayerMovements : MonoBehaviour
     {
         healthBar.fillAmount = (float)lives / 10;
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, Ground);
+        if (isGrounded) canJump = true;
 
         if (Input.GetKeyDown(KeyCode.S))
         {
@@ -46,7 +49,16 @@ public class PlayerMovements : MonoBehaviour
             Invoke("IgnoreLayerOff", 0.5f);
         }
 
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space)) { rb.velocity = Vector2.up * jumpForce; }
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.velocity = Vector2.up * jumpForce;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && !isGrounded && canJump && canDoubleJump)
+        {
+            rb.velocity = Vector2.up * jumpForce;
+            canJump = false;
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D col)

@@ -79,9 +79,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 3
+  DealtDamage: 0
   AgressDistance: 15
   Speed: 5
   RestTime: 2
+  Sprite: {fileID: 356759494300981757}
   _bullet: {fileID: 305432084097473674, guid: 02c45bcd798805743b25afca1d4e1c0f, type: 3}
 --- !u!70 &7806348133866711997
 CapsuleCollider2D:

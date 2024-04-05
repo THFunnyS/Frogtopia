@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public abstract class Enemy : MonoBehaviour
     public Transform Target { get; set; }
     public StateMachine SM { get; set; }
 
+    public GameObject Sprite;
+
     public virtual void Start()
     {
         Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -21,10 +25,10 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void Update()
     {
-        if(SM.CurrentState != null)
+        if (SM.CurrentState != null)
             SM.CurrentState.Update();
 
-        if (lives == 0)
+        if (lives <= 0)
         {
             Destroy(gameObject);
         }
@@ -37,11 +41,16 @@ public abstract class Enemy : MonoBehaviour
             case "PlayerBullet":
                 TakenDamage = GameObject.FindGameObjectWithTag("PlayerBullet").GetComponent<PlayerBullet>().Damage;
                 lives -= TakenDamage;
+                if (GameObject.FindGameObjectWithTag("PlayerBullet").GetComponent<PlayerBullet>().isPoison == true)
+                {
+                    Sprite.GetComponent<SpriteRenderer>().color = new Color(0, 255, 0);
+                    StartCoroutine(GetPoisoned());
+                }
                 break;
             case "PlayerTongue":
                 TakenDamage = GameObject.FindGameObjectWithTag("PlayerTongue").GetComponent<TongueAttack>().Damage;
                 lives -= TakenDamage;
-                if (GameObject.FindGameObjectWithTag("PlayerTongue").GetComponent<TongueKnockback>().isActive == true)
+                if (GameObject.FindGameObjectWithTag("PlayerTongue").GetComponent<TongueAttack>().Knockback == true)
                 {
                     transform.position -= Target.position;
                 }
@@ -52,5 +61,17 @@ public abstract class Enemy : MonoBehaviour
                 lives -= TakenDamage;
                 break;
         }
+    }
+
+    private IEnumerator GetPoisoned()
+    {
+        int PoisonDanaged = GameObject.FindGameObjectWithTag("PlayerBullet").GetComponent<PlayerBullet>().PoisonDamage;
+        int n = GameObject.FindGameObjectWithTag("PlayerBullet").GetComponent<PlayerBullet>().numOfPosionHits;
+        for (int i = 0; i < n; ++i)
+        {
+            lives -= PoisonDanaged;
+            yield return new WaitForSeconds(0.5f);
+        }
+        Sprite.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
     }
 }

@@ -47,9 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 5
+  DealtDamage: 0
   AgressDistance: 10
   Speed: 10
   RestTime: 2
+  Sprite: {fileID: 7638070372234652877}
 --- !u!70 &7638070372234652872
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
