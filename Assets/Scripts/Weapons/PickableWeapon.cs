@@ -36,7 +36,7 @@ public class PickableWeapon : MonoBehaviour
         Offset = Amp * Mathf.Sin(t * Freq);
         transform.position = StartPos + new Vector2(0, Offset);
 
-        if (Mathf.Abs(transform.position.x - Player.transform.position.x) < 1.8f)
+        if (Mathf.Abs(transform.position.x - Player.transform.position.x) < 1.8f && Mathf.Abs(transform.position.y - Player.transform.position.y) < 0.8f)
         {
             pickable = true;
             pickUpWeaponButton.SetActive(true);
