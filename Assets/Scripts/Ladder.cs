@@ -42,6 +42,6 @@ public class Ladder : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        col.GetComponent<Rigidbody2D>().gravityScale = 1;
+        col.GetComponent<Rigidbody2D>().gravityScale = 1.5f;
     }
 }
