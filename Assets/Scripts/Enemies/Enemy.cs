@@ -17,8 +17,11 @@ public abstract class Enemy : MonoBehaviour
 
     public GameObject Sprite;
 
+    private Rigidbody2D rb;
+
     public virtual void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         SM = new StateMachine();
     }
@@ -52,7 +55,7 @@ public abstract class Enemy : MonoBehaviour
                 lives -= TakenDamage;
                 if (GameObject.FindGameObjectWithTag("PlayerTongue").GetComponent<TongueAttack>().Knockback == true)
                 {
-                    transform.position -= Target.position;
+                    StartCoroutine(PushAway(Target, 100));
                 }
                 break;
             case "Weapon":
@@ -73,5 +76,17 @@ public abstract class Enemy : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
         Sprite.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+    }
+
+    public IEnumerator PushAway(Transform pushFrom, float pushPower)
+    {
+        float time = 0;
+        while (0.1 > time)
+        {
+            time += Time.deltaTime;
+            Vector2 direction = (pushFrom.transform.position - this.transform.position).normalized;
+            rb.AddForce(-direction * pushPower);
+        }
+        yield return 0;
     }
 }
