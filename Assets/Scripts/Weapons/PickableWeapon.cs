@@ -36,7 +36,7 @@ public class PickableWeapon : MonoBehaviour
         Offset = Amp * Mathf.Sin(t * Freq);
         transform.position = StartPos + new Vector2(0, Offset);
 
-        if (Mathf.Abs(transform.position.x - Player.transform.position.x) < 1.8f && Mathf.Abs(transform.position.y - Player.transform.position.y) < 0.8f)
+        if (Mathf.Abs(transform.position.x - Player.transform.position.x) < 1.8f && Mathf.Abs(transform.position.y - Player.transform.position.y) < 1.8f)
         {
             pickable = true;
             pickUpWeaponButton.SetActive(true);
@@ -69,7 +69,8 @@ public class PickableWeapon : MonoBehaviour
     void DropCurrentWeapon()
     {
         currentWeaponIcon = currentWeaponChild.GetComponent<Weapon>().weaponIcon;
-        Instantiate(currentWeaponIcon, Player.transform.position, Quaternion.identity);
+        GameObject droppedWeapon = Instantiate(currentWeaponIcon, Player.transform.position, Quaternion.identity);
+        droppedWeapon.GetComponent<PickableWeapon>().icon = GameObject.Find("WeaponIcon").GetComponent<Image>();
         Destroy(currentWeaponChild);
     }
 }

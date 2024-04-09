@@ -42,9 +42,10 @@ GameObject:
   - component: {fileID: 356759494064034288}
   - component: {fileID: 356759494064034289}
   - component: {fileID: 7806348133866711997}
+  - component: {fileID: 5732409305927304770}
   m_Layer: 0
   m_Name: Fly
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,8 +79,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b93d039cd9bd9648b3ddf92fbf9e470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 3
-  DealtDamage: 0
+  lives: 6
+  DealtDamage: 1
   AgressDistance: 15
   Speed: 5
   RestTime: 2
@@ -101,6 +102,27 @@ CapsuleCollider2D:
   m_Offset: {x: -0.15312481, y: -0.030625105}
   m_Size: {x: 1.5412521, y: 1.5412526}
   m_Direction: 0
+--- !u!50 &5732409305927304770
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356759494064034291}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 5
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &356759494300981757
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +307,6 @@ GameObject:
   m_Component:
   - component: {fileID: 356759494975479179}
   - component: {fileID: 356759494975479175}
-  - component: {fileID: 356759494975479177}
   - component: {fileID: 356759494975479176}
   m_Layer: 0
   m_Name: body
@@ -362,27 +383,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &356759494975479177
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 356759494975479178}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!95 &356759494975479176
 Animator:
   serializedVersion: 5

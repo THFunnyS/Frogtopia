@@ -3229,7 +3229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &1953899852
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3475,7 +3475,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &2097006447
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3996,29 +3996,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 356759494064034289, guid: 034810b6563c19a4a9375a866a605e82, type: 3}
-      propertyPath: lives
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 356759494064034289, guid: 034810b6563c19a4a9375a866a605e82, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 356759494064034289, guid: 034810b6563c19a4a9375a866a605e82, type: 3}
-      propertyPath: DealtDamage
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 356759494064034291, guid: 034810b6563c19a4a9375a866a605e82, type: 3}
       propertyPath: m_Name
       value: Fly
       objectReference: {fileID: 0}
     - target: {fileID: 356759494064034291, guid: 034810b6563c19a4a9375a866a605e82, type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 356759494064034291, guid: 034810b6563c19a4a9375a866a605e82, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 034810b6563c19a4a9375a866a605e82, type: 3}
@@ -4623,9 +4607,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7638070372234652874, guid: af180fa020946394caa285f42a3a521c, type: 3}
-      propertyPath: DealtDamage
-      value: 3
+    - target: {fileID: 7495769537226513971, guid: af180fa020946394caa285f42a3a521c, type: 3}
+      propertyPath: m_LinearDrag
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7495769537226513971, guid: af180fa020946394caa285f42a3a521c, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7638070372234652875, guid: af180fa020946394caa285f42a3a521c, type: 3}
       propertyPath: m_RootOrder
@@ -4677,11 +4665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7638070372234652877, guid: af180fa020946394caa285f42a3a521c, type: 3}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7638070372234652877, guid: af180fa020946394caa285f42a3a521c, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af180fa020946394caa285f42a3a521c, type: 3}
