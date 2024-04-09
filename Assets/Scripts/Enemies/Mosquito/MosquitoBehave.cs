@@ -7,10 +7,8 @@ public class MosquitoBehave : MonoBehaviour
     public float speed;
     public float attackSpeed;
     public float attackDistance;
-    public float dashTime;
     public float restTime;
     public float longDistance;
-    public float vampireHealPercentage;
     public float flyingHeight;
 
     private Rigidbody2D rb;
@@ -69,7 +67,7 @@ public class MosquitoBehave : MonoBehaviour
         Vector2 direction = (player.position - transform.position).normalized;
         rb.velocity = direction * attackSpeed;
 
-        StartCoroutine(PerformAttack());
+        //StartCoroutine(PerformAttack());
     }
 
     void FlyAtHeight()
@@ -90,17 +88,15 @@ public class MosquitoBehave : MonoBehaviour
         }
     }
 
-    IEnumerator PerformAttack()
+    /*IEnumerator PerformAttack()
     {
-/*        Vector2 directionFromPlayer = (transform.position - player.position).normalized;
-        rb.velocity = directionFromPlayer * attackSpeed; // Отталкиваемся от игрока*/
-
-        yield return new WaitForSeconds(dashTime);
+        *//*        Vector2 directionFromPlayer = (transform.position - player.position).normalized;
+                rb.velocity = directionFromPlayer * attackSpeed; // Отталкиваемся от игрока*//*
+        isAttacking = true;
+        yield return new WaitForSeconds(restTime);
         rb.velocity = Vector2.zero;
         isAttacking = false;
-
-        StartCoroutine(Rest());
-    }
+    }*/
 
     IEnumerator Rest()
     {
@@ -111,7 +107,11 @@ public class MosquitoBehave : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        StartCoroutine(Rest());
+        if (other.gameObject.CompareTag("Player"))
+        {
+            StartCoroutine(Rest());
+        }
+            
         // нужно добавить эффект вампиризма
     }
 }
