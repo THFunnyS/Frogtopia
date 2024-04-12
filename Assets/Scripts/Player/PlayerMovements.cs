@@ -13,7 +13,14 @@ public class PlayerMovements : MonoBehaviour
     public bool canDoubleJump;
     private bool canJump;
 
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashPower = 24f;
+    private float dashTime = 0.2f;
+    private float dashCooldown = 0.5f;
+
     private Rigidbody2D rb;
+    [SerializeField] private TrailRenderer tr;
 
     private bool isGrounded;
     public Transform feetPos;
@@ -33,12 +40,15 @@ public class PlayerMovements : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDashing) return;
         moveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
     }
 
     private void Update()
     {
+        if (isDashing) return;
+
         healthBar.fillAmount = (float)lives / 10;
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, Ground);
         if (isGrounded) canJump = true;
@@ -58,6 +68,11 @@ public class PlayerMovements : MonoBehaviour
         {
             rb.velocity = Vector2.up * jumpForce;
             canJump = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            StartCoroutine(Dash());
         }
     }
 
@@ -83,6 +98,23 @@ public class PlayerMovements : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        rb.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
+        tr.emitting = true;
+        StartCoroutine(setInvulnerability(0.5f));
+        yield return new WaitForSeconds(dashTime);
+        tr.emitting = false;
+        rb.gravityScale = originalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
 
     private IEnumerator setInvulnerability(float time)
