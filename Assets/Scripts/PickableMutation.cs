@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum Effects
+{
+    /*BODY  */  DJUMP,
+    /*TONGUE*/ Knockback, PosionShot
+}
+
 public class PickableMutation : MonoBehaviour
 {
     public Transform Player;
-    public string Tag;
-    public string script;
-    //public string effect;
-    GameObject MutatedPart;
+    public Effects effects;
 
     public GameObject pickUpMutationButton;
     bool pickable = false;
@@ -23,7 +26,6 @@ public class PickableMutation : MonoBehaviour
     {
         
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        MutatedPart = GameObject.FindGameObjectWithTag(Tag);
         StartPos = transform.position;
     }
 
@@ -33,7 +35,7 @@ public class PickableMutation : MonoBehaviour
         Offset = Amp * Mathf.Sin(t * Freq);
         transform.position = StartPos + new Vector2(0, Offset);
 
-        if (Mathf.Abs(transform.position.x - Player.transform.position.x) < 1.8f)
+        if (Mathf.Abs(transform.position.x - Player.transform.position.x) < 1.8f && Mathf.Abs(transform.position.y - Player.transform.position.y) < 1.8f)
         {
             pickable = true;
             pickUpMutationButton.SetActive(true);
@@ -50,7 +52,18 @@ public class PickableMutation : MonoBehaviour
     {
         if (pickable == true && Input.GetKeyDown(KeyCode.E))
         {
-            (MutatedPart.GetComponent(script) as MonoBehaviour).enabled = true;
+            switch (effects)
+            {
+                case Effects.DJUMP:
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovements>().canDoubleJump = true;
+                    break;
+                case Effects.Knockback:
+                    GameObject.FindGameObjectWithTag("PlayerTongue").GetComponent<TongueAttack>().Knockback = true;
+                    break;
+                case Effects.PosionShot:
+                    GameObject.FindGameObjectWithTag("PlayerTongue").GetComponent<TongueShot>().isPoison = true;
+                    break;
+            }
             Destroy(gameObject);
         }
     }

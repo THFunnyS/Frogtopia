@@ -9,6 +9,8 @@ public class TongueShot : MonoBehaviour
 
     public float StartTimeFire;
     private float TimeFire;
+
+    public bool isPoison = false;
     void Start()
     {
         TimeFire = StartTimeFire;
@@ -16,6 +18,7 @@ public class TongueShot : MonoBehaviour
 
     void Update()
     {
+        //if (isPoison) Bullet.GetComponent<PlayerBullet>().isPoison = true;
         if (Input.GetKey(KeyCode.Mouse1))
         {
             if (TimeFire <= 0)
