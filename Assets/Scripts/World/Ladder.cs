@@ -5,18 +5,7 @@ using UnityEngine;
 
 public class Ladder : MonoBehaviour
 {
-    [SerializeField]
-
     public float speed = 5;
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerStay2D(Collider2D col)
     {

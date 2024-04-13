@@ -784,7 +784,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5628743028927146737}
   - component: {fileID: 5628743028927146736}
-  - component: {fileID: 5628743028927146751}
   m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
@@ -866,18 +865,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5628743028927146751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5628743028927146738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fae9fa64dd273f4fa2fa49dda998cb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5628743029207887834
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,8 +959,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5628743029211292828}
   - component: {fileID: 5628743029211292829}
+  - component: {fileID: 5910781539057149677}
   - component: {fileID: 5628743029211292830}
-  - component: {fileID: 5628743029211292831}
   - component: {fileID: 3945630477463359688}
   m_Layer: 3
   m_Name: Player
@@ -1030,23 +1017,7 @@ MonoBehaviour:
   isArmed: 0
   healthBar: {fileID: 0}
   pain: {fileID: 8300000, guid: 1ef68e2d69528034096e6e329b50e636, type: 3}
---- !u!70 &5628743029211292830
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5628743029211292820}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0029053986, y: -0.8781433}
-  m_Size: {x: 0.83259267, y: 2.7250037}
-  m_Direction: 0
---- !u!50 &5628743029211292831
+--- !u!50 &5910781539057149677
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -1067,6 +1038,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!70 &5628743029211292830
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628743029211292820}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0029053986, y: -0.8781433}
+  m_Size: {x: 0.83259267, y: 2.7250037}
+  m_Direction: 0
 --- !u!96 &3945630477463359688
 TrailRenderer:
   serializedVersion: 2

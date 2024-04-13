@@ -13,6 +13,10 @@ public class PlayerMovements : MonoBehaviour
     public bool canDoubleJump;
     private bool canJump;
 
+    private bool isFacingRight = true;
+    Vector3 pos;
+    Camera cam;
+
     private bool canDash = true;
     private bool isDashing;
     private float dashPower = 24f;
@@ -36,6 +40,8 @@ public class PlayerMovements : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        cam = FindObjectOfType<Camera>();
+        healthBar = GameObject.Find("HelathBar").GetComponent<Image>();
     }
 
     private void FixedUpdate()
@@ -47,6 +53,9 @@ public class PlayerMovements : MonoBehaviour
 
     private void Update()
     {
+        pos = cam.WorldToScreenPoint(transform.position);
+        Flip();
+
         if (isDashing) return;
 
         healthBar.fillAmount = (float)lives / 10;
@@ -87,16 +96,37 @@ public class PlayerMovements : MonoBehaviour
                     lives -= TakenDamage;
                     isInvulnerable = true;
                     AudioSource.PlayClipAtPoint(pain, transform.position);
-                    StartCoroutine(setInvulnerability(1.5f));
+                    StartCoroutine(SetInvulnerability(1.5f));
                     break;
                 case "EnemyBullet":
                     TakenDamage = GameObject.FindGameObjectWithTag("EnemyBullet").GetComponent<FlyBullet>().Damage;
                     lives -= TakenDamage;
                     isInvulnerable = true;
                     AudioSource.PlayClipAtPoint(pain, transform.position);
-                    StartCoroutine(setInvulnerability(1.5f));
+                    StartCoroutine(SetInvulnerability(1.5f));
                     break;
             }
+        }
+    }
+
+    void Flip()
+    {
+        if (Input.mousePosition.x < pos.x && isFacingRight)
+        {
+            isFacingRight = false;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+            cam.transform.localScale = localScale;
+        }
+
+        if (Input.mousePosition.x > pos.x && !isFacingRight)
+        {
+            isFacingRight = true;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+            cam.transform.localScale = localScale;
         }
     }
 
@@ -106,9 +136,9 @@ public class PlayerMovements : MonoBehaviour
         isDashing = true;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
-        rb.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
+        rb.velocity = new Vector2(moveInput * dashPower, 0f);
         tr.emitting = true;
-        StartCoroutine(setInvulnerability(0.5f));
+        StartCoroutine(SetInvulnerability(0.5f));
         yield return new WaitForSeconds(dashTime);
         tr.emitting = false;
         rb.gravityScale = originalGravity;
@@ -117,7 +147,7 @@ public class PlayerMovements : MonoBehaviour
         canDash = true;
     }
 
-    private IEnumerator setInvulnerability(float time)
+    private IEnumerator SetInvulnerability(float time)
     {
         isInvulnerable = true;
         yield return new WaitForSeconds(time);
