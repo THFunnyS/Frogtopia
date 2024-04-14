@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,8 @@ public class PlayerMovements : MonoBehaviour
     private float moveInput;
     public bool canDoubleJump;
     private bool canJump;
+
+    private Animator anim;
 
     private bool isFacingRight = true;
     Vector3 pos;
@@ -35,6 +38,7 @@ public class PlayerMovements : MonoBehaviour
 
     public Image healthBar;
     public AudioClip pain;
+    public GameObject DeathPanel;
     private bool isInvulnerable = false;
 
     private void Start()
@@ -42,6 +46,8 @@ public class PlayerMovements : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         cam = FindObjectOfType<Camera>();
         healthBar = GameObject.Find("HelathBar").GetComponent<Image>();
+        //DeathPanel = GameObject.Find("DeathPanel");
+        anim = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -83,6 +89,8 @@ public class PlayerMovements : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
+
+        if (lives <= 0) Death();
     }
 
     public void OnTriggerEnter2D(Collider2D col)
@@ -94,6 +102,7 @@ public class PlayerMovements : MonoBehaviour
                 case "Enemy":
                     TakenDamage = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>().DealtDamage;
                     lives -= TakenDamage;
+                    anim.SetTrigger("Damaged");
                     isInvulnerable = true;
                     AudioSource.PlayClipAtPoint(pain, transform.position);
                     StartCoroutine(SetInvulnerability(1.5f));
@@ -101,6 +110,7 @@ public class PlayerMovements : MonoBehaviour
                 case "EnemyBullet":
                     TakenDamage = GameObject.FindGameObjectWithTag("EnemyBullet").GetComponent<FlyBullet>().Damage;
                     lives -= TakenDamage;
+                    anim.SetTrigger("Damaged");
                     isInvulnerable = true;
                     AudioSource.PlayClipAtPoint(pain, transform.position);
                     StartCoroutine(SetInvulnerability(1.5f));
@@ -152,10 +162,23 @@ public class PlayerMovements : MonoBehaviour
         isInvulnerable = true;
         yield return new WaitForSeconds(time);
         isInvulnerable = false;
+        anim.SetTrigger("DamageGone");
     }
 
     void IgnoreLayerOff()
     {
         Physics2D.IgnoreLayerCollision(3, 7, false);
+    }
+
+    public void Death()
+    {
+        DeathPanel.SetActive(true);
+        speed = 0f;
+        isInvulnerable = true;
+        anim.SetTrigger("Died");
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            Loader.Load(Loader.Scenes.HQ);
+        }
     }
 }

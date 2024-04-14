@@ -8,6 +8,7 @@ public class ButtonSceneControls : MonoBehaviour
     {
         Loader.Scenes scene = (Loader.Scenes)SceneNum;
         Loader.Load(scene);
+        Time.timeScale = 1;
     }
 
     public void Exit()
