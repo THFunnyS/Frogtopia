@@ -10,16 +10,18 @@ TagManager:
   - Weapon
   - PickableItem
   - PickableWeapon
+  - EnemyBullet
+  - PlayerWeaponPlace
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Ground
-  - Enemy
-  - Player
+  - Platfrom
+  - Ladder
   - 
   - 
   - 
