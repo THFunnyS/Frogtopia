@@ -39,8 +39,13 @@ public class PlayerMovements : MonoBehaviour
 
     public Image healthBar;
     public AudioClip pain;
+    public AudioClip fallSound;
     public GameObject DeathPanel;
     private bool isInvulnerable = false;
+
+    public AudioSource moveSound;
+    private bool groundFlag = false;
+    private bool isLanding = false;
 
     private void Start()
     {
@@ -70,6 +75,12 @@ public class PlayerMovements : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, Ground);
         if (isGrounded) canJump = true;
 
+        /**if (isGrounded && isLanding)
+        {
+            AudioSource.PlayClipAtPoint(fallSound, transform.position);
+            isLanding = false;
+        }**/
+
         if (Input.GetKeyDown(KeyCode.S))
         {
             Physics2D.IgnoreLayerCollision(3, 7, true);
@@ -79,12 +90,14 @@ public class PlayerMovements : MonoBehaviour
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             rb.velocity = Vector2.up * jumpForce;
+            //isLanding = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && !isGrounded && canJump && canDoubleJump)
         {
             rb.velocity = Vector2.up * jumpForce;
             canJump = false;
+            //isLanding = true;
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
@@ -93,6 +106,15 @@ public class PlayerMovements : MonoBehaviour
         }
 
         if (lives <= 0) Death();
+
+        if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.35f && isGrounded)
+        {
+            if (!moveSound.isPlaying) moveSound.Play();
+        }
+        else
+        {
+            moveSound.Stop();
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D col)
