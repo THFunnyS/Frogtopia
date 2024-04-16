@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EagleIdleState : State
+public class FlyIdleState : State
 {
     private Enemy _enemy;
+    private GameObject _bullet;
 
-    public EagleIdleState(Enemy enemy)
+    public FlyIdleState(Enemy enemy, GameObject bullet)
     {
         _enemy = enemy;
+        _bullet = bullet;
     }
 
     public override void Enter()
@@ -26,7 +28,7 @@ public class EagleIdleState : State
 
         if (Vector2.Distance(_enemy.transform.position, _enemy.Target.position) < _enemy.AgressDistance)
         {
-            _enemy.SM.ChangeState(new EaglePushPointState(_enemy));
+            _enemy.SM.ChangeState(new FlyPushState(_enemy, _bullet));
         }
     }
 }
