@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/HQ.unity
     guid: 45e065f7b9e1dfa4d975acf7acf8ddf6
   - enabled: 1
+    path: Assets/Scenes/Swamps.unity
+    guid: d31860c3f9583714ca5adbf1de233de6
+  - enabled: 1
     path: Assets/Scenes/LoadingScrene.unity
     guid: fcac8f36bb17276499b36e7aa4c26a57
   m_configObjects: {}

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PlayerMovements : MonoBehaviour
 {
     public int lives;
+    private int MaxLives;
     private int TakenDamage;
     public float speed;
     public float jumpForce;
@@ -48,6 +49,7 @@ public class PlayerMovements : MonoBehaviour
         healthBar = GameObject.Find("HelathBar").GetComponent<Image>();
         //DeathPanel = GameObject.Find("DeathPanel");
         anim = GetComponent<Animator>();
+        MaxLives = 15;
     }
 
     private void FixedUpdate()
@@ -64,7 +66,7 @@ public class PlayerMovements : MonoBehaviour
 
         if (isDashing) return;
 
-        healthBar.fillAmount = (float)lives / 10;
+        healthBar.fillAmount = (float)lives / MaxLives;
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, Ground);
         if (isGrounded) canJump = true;
 
