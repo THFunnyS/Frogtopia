@@ -9,10 +9,6 @@ public class Weapon : MonoBehaviour
     public GameObject weaponIcon;
 
     public int Damage;
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
