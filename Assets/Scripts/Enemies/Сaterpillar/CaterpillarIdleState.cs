@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EagleIdleState : State
+public class CaterpillarIdleState : State
 {
     private Enemy _enemy;
 
-    public EagleIdleState(Enemy enemy)
-    {
+    public CaterpillarIdleState(Enemy enemy)
+    { 
         _enemy = enemy;
     }
 
@@ -26,7 +26,7 @@ public class EagleIdleState : State
 
         if (Vector2.Distance(_enemy.transform.position, _enemy.Target.position) < _enemy.AgressDistance)
         {
-            _enemy.SM.ChangeState(new EaglePushPointState(_enemy));
+            _enemy.SM.ChangeState(new CaterpillarPushState(_enemy));
         }
     }
 }

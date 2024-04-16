@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RestState : State
+public class EagleRestState : State
 {
     private Enemy _enemy;
     private float _leftTime;
 
-    public RestState(Enemy enemy)
+    public EagleRestState(Enemy enemy)
     {
         _enemy = enemy;
         _leftTime = _enemy.RestTime;
