@@ -49,6 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   Damage: 2
+  isPoison: 0
+  PoisonDamage: 1
+  numOfPosionHits: 3
 --- !u!212 &1611603250054595975
 SpriteRenderer:
   m_ObjectHideFlags: 0
