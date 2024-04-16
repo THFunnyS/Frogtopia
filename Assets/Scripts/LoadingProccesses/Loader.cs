@@ -8,7 +8,7 @@ public static class Loader
 {
     public enum Scenes
     {
-        TestScene, MainMenu, HQ, LoadingScrene
+        TestScene, MainMenu, HQ, LoadingScrene, Swamps
     }
     public static void Load(Scenes scene)
     {
