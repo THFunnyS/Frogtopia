@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Fly : Enemy
-{
-    [SerializeField] private GameObject _bullet;
-
+public class CaterpillarEnemy : Enemy
+{ 
     public override void Start()
     {
         base.Start();
-        SM.Initialize(new FlyIdleState(this, _bullet));
+        SM.Initialize(new CaterpillarIdleUpState(this));
     }
 
     public override void Update()
