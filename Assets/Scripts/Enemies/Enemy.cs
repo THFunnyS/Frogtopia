@@ -81,7 +81,7 @@ public abstract class Enemy : MonoBehaviour
     public IEnumerator PushAway(Transform pushFrom, float pushPower) //нужно у врагов Linear Drag на 5 включать
     {
         float time = 0;
-        while (0.1 > time)  
+        while (0.1 > time)
         {
             time += Time.deltaTime;
             Vector2 direction = (pushFrom.transform.position - this.transform.position).normalized;
