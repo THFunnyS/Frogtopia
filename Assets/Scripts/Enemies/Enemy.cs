@@ -4,26 +4,30 @@ using UnityEngine.UI;
 
 public abstract class Enemy : MonoBehaviour
 {
-    public int lives;
-    private int TakenDamage;
-    public int DealtDamage;
+    public float lives;
+    private float TakenDamage;
+    public float DealtDamage;
     public float AgressDistance = 10f;
     public float Speed = 5f;
     public float RestTime = 2f;
 
-    private Transform currentWeapon;
     public Transform Target { get; set; }
     public StateMachine SM { get; set; }
-
     public GameObject Sprite;
-
     private Rigidbody2D rb;
+
+    private GameObject Tongue;
+    private GameObject player;
+    private GameObject currentWeapon;
 
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         SM = new StateMachine();
+        Tongue = GameObject.FindGameObjectWithTag("PlayerTongue");
+        player = GameObject.FindGameObjectWithTag("Player");
+        currentWeapon = GameObject.Find("Weapon");
     }
 
     public virtual void Update()
@@ -41,43 +45,54 @@ public abstract class Enemy : MonoBehaviour
     {
         switch (col.tag)
         {
-            case "PlayerBullet":
+            case "PlayerBullet": //если снаряд игрока
                 TakenDamage = GameObject.FindGameObjectWithTag("PlayerBullet").GetComponent<PlayerBullet>().Damage;
                 lives -= TakenDamage;
-                if (GameObject.FindGameObjectWithTag("PlayerBullet").GetComponent<PlayerBullet>().isPoison == true)
+                if (GameObject.FindGameObjectWithTag("PlayerBullet").GetComponent<PlayerBullet>().isPoison)
                 {
-                    Sprite.GetComponent<SpriteRenderer>().color = new Color(0, 255, 0);
-                    StartCoroutine(GetPoisoned());
+                    float PoisonDamaged = GameObject.FindGameObjectWithTag("PlayerBullet").GetComponent<PlayerBullet>().PoisonDamage;
+                    int n = GameObject.FindGameObjectWithTag("PlayerBullet").GetComponent<PlayerBullet>().numOfPosionHits;
+                    StartCoroutine(GetPoisoned(n, PoisonDamaged));
                 }
                 break;
-            case "PlayerTongue":
-                TakenDamage = GameObject.FindGameObjectWithTag("PlayerTongue").GetComponent<TongueAttack>().Damage;
+            case "PlayerTongue": //если язык игрока
+                TakenDamage = Tongue.GetComponent<TongueAttack>().Damage;
                 lives -= TakenDamage;
-                if (GameObject.FindGameObjectWithTag("PlayerTongue").GetComponent<TongueAttack>().Knockback == true)
+                if (Tongue.GetComponent<TongueAttack>().Knockback)
                 {
                     StartCoroutine(PushAway(Target, 100));
                 }
+                if (Tongue.GetComponent<TongueAttack>().isPoison)
+                {
+                    float PoisonDamaged = Tongue.GetComponent<TongueAttack>().PoisonDamage;
+                    int n = Tongue.GetComponent<TongueAttack>().numOfPosionHits;
+                    StartCoroutine(GetPoisoned(n, PoisonDamaged));
+                }
+                if (Tongue.GetComponent<TongueAttack>().isVampirism)
+                {
+                    float percentOfVamp = Tongue.GetComponent<TongueAttack>().percentOfVamp;
+                    player.GetComponent<PlayerMovements>().lives += (TakenDamage * percentOfVamp);
+                }
                 break;
-            case "Weapon":
-                currentWeapon = GameObject.Find("Weapon").GetComponent<Transform>();
+            case "Weapon": //если оружие
                 TakenDamage = currentWeapon.transform.GetChild(0).gameObject.GetComponent<Weapon>().Damage;
                 lives -= TakenDamage;
                 break;
         }
     }
 
-    private IEnumerator GetPoisoned()
+    private IEnumerator GetPoisoned(int n, float PoisonDamaged) //отравление
     {
-        int PoisonDanaged = GameObject.FindGameObjectWithTag("PlayerBullet").GetComponent<PlayerBullet>().PoisonDamage;
-        int n = GameObject.FindGameObjectWithTag("PlayerBullet").GetComponent<PlayerBullet>().numOfPosionHits;
+        Sprite.GetComponent<SpriteRenderer>().color = new Color(0, 255, 0);
         for (int i = 0; i < n; ++i)
         {
-            lives -= PoisonDanaged;
+            lives -= PoisonDamaged;
             yield return new WaitForSeconds(0.5f);
         }
         Sprite.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
     }
 
+    //откидывание врага
     public IEnumerator PushAway(Transform pushFrom, float pushPower) //нужно у врагов Linear Drag на 5 включать
     {
         float time = 0;
