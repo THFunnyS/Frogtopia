@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public enum Effects
 {
     /*BODY  */  DJUMP, ArmorSkin,
-    /*TONGUE*/ Knockback, PoisonShot , PoisonHit, Vampirism
+    /*TONGUE*/ Knockback, PoisonShot , PoisonHit, Vampirism, PlayerKnockback
 }
 
 public class PickableMutation : MonoBehaviour
@@ -77,6 +77,9 @@ public class PickableMutation : MonoBehaviour
                     break;
                 case Effects.ArmorSkin:
                     player.GetComponent<PlayerMovements>().isArmorSkin = true;
+                    break;
+                case Effects.PlayerKnockback:
+                    Tongue.GetComponent<TongueAttack>().PlayerKnockback = true;
                     break;
             }
             Destroy(gameObject);

@@ -116,6 +116,7 @@ public class PlayerMovements : MonoBehaviour
                     lives -= TakenDamage * armorResist;
                     anim.SetTrigger("Damaged");
                     isInvulnerable = true;
+                    StartCoroutine(PushedAway(GameObject.FindGameObjectWithTag("Enemy").transform, GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>().KnockbackPower));
                     AudioSource.PlayClipAtPoint(pain, transform.position);
                     StartCoroutine(SetInvulnerability(1.5f));
                     break;
@@ -124,6 +125,7 @@ public class PlayerMovements : MonoBehaviour
                     lives -= TakenDamage * armorResist;
                     anim.SetTrigger("Damaged");
                     isInvulnerable = true;
+                    StartCoroutine(PushedAway(GameObject.FindGameObjectWithTag("EnemyBullet").transform, GameObject.FindGameObjectWithTag("EnemyBullet").GetComponent<FlyBullet>().KnockbackPower));
                     AudioSource.PlayClipAtPoint(pain, transform.position);
                     StartCoroutine(SetInvulnerability(1.5f));
                     break;
@@ -179,6 +181,21 @@ public class PlayerMovements : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+    private IEnumerator PushedAway(Transform pushFrom, float pushPower) //откидывание при получении урона
+    {
+        float time = 0;
+        while (0.1 > time)
+        {
+            //pushFrom.transform.position = new Vector2(pushFrom.transform.position.x, 0);
+            //Transform tr = transform;
+            //tr.transform.position = new Vector2(this.transform.position.x, 0);
+            time += Time.deltaTime;
+            Vector2 direction = (pushFrom.transform.position - this.transform.position).normalized;
+            rb.AddForce(-direction * pushPower);
+        }
+        yield return 0;
     }
 
     private IEnumerator SetInvulnerability(float time) //неу€звимость

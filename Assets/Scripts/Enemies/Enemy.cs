@@ -7,6 +7,7 @@ public abstract class Enemy : MonoBehaviour
     public float lives;
     private float TakenDamage;
     public float DealtDamage;
+    public float KnockbackPower;
     public float AgressDistance = 10f;
     public float Speed = 5f;
     public float RestTime = 2f;
@@ -93,7 +94,7 @@ public abstract class Enemy : MonoBehaviour
     }
 
     //откидывание врага
-    public IEnumerator PushAway(Transform pushFrom, float pushPower) //нужно у врагов Linear Drag на 5 включать
+    private IEnumerator PushAway(Transform pushFrom, float pushPower) //нужно у врагов Linear Drag на 5 включать
     {
         float time = 0;
         while (0.1 > time)
