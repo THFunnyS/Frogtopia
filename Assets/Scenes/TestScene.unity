@@ -2726,6 +2726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  moveSound: {fileID: 0}
 --- !u!212 &1245394997
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6195,6 +6196,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5628743028496648220, guid: c0821de766bd4484291c4f017809caa4, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 70a293e4b04dc3f40a4967b8b2a37213, type: 3}
+    - target: {fileID: 5628743028496648220, guid: c0821de766bd4484291c4f017809caa4, type: 3}
       propertyPath: isVampirizm
       value: 1
       objectReference: {fileID: 0}
@@ -6357,6 +6362,10 @@ PrefabInstance:
     - target: {fileID: 7054450062365495489, guid: c0821de766bd4484291c4f017809caa4, type: 3}
       propertyPath: isActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323712504524642004, guid: c0821de766bd4484291c4f017809caa4, type: 3}
+      propertyPath: m_audioClip
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7054450062365495489, guid: c0821de766bd4484291c4f017809caa4, type: 3}

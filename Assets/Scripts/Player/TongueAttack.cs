@@ -8,6 +8,10 @@ public class TongueAttack : MonoBehaviour
 
     public Animator anim;
     public float Damage;
+
+    public AudioClip attackSound;
+    private bool isAttacking = false;
+
     public bool Knockback = false;
 
     public bool isPoison = false;
@@ -28,12 +32,21 @@ public class TongueAttack : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse1)) {
             anim.SetTrigger("attack");
+            if (!isAttacking) StartCoroutine(PlayAttackSound());
         }
 
         if (isPoison)
         {
             GetComponent<SpriteRenderer>().color = new Color(0, 255, 0);
         }
+    }
+
+    IEnumerator PlayAttackSound()
+    {
+        isAttacking = true;
+        AudioSource.PlayClipAtPoint(attackSound, transform.position);
+        yield return new WaitForSeconds(attackSound.length);
+        isAttacking = false;
     }
 
     private void OnTriggerEnter2D(Collider2D col)

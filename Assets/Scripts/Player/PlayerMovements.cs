@@ -48,6 +48,8 @@ public class PlayerMovements : MonoBehaviour
     private float armorResist = 1f;
     private float armorTime = 5f;
     private float armorCooldown = 10f;
+
+    public AudioSource moveSound;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -100,6 +102,15 @@ public class PlayerMovements : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && isArmorSkin) //бронированная кожа
         {
             StartCoroutine(ArmorSkin());
+        }
+
+        if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.35f && isGrounded) //звуки ходьбы
+        {
+            if (!moveSound.isPlaying) moveSound.Play();
+        }
+        else
+        {
+            moveSound.Stop();
         }
 
         if (lives <= 0) Death(); //смерть
