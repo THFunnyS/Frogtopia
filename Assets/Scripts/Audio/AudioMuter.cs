@@ -1,29 +1,25 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 [RequireComponent(typeof(AudioSource)), AddComponentMenu("Audio/Audio Muter Component")]
 public class AudioMuter : MonoBehaviour
 {
-    public bool isMusic = false;
+    [SerializeField] private bool isMusic = false;
 
+    private float _baseVolume;
     private AudioSource _audioSource;
-    private float _baseVolume = 1f;
 
-    private void Start()
+    private void Awake()
     {
         _audioSource = gameObject.GetComponent<AudioSource>();
         _baseVolume = _audioSource.volume;
+    }
 
+    private void Start()
+    {
         AudioManager.inst.OnAudioSettingsChanged += _audioSettingsChanged;
 
         _audioSettingsChanged();
     }
-
-    private void OnDestroy()
-    {
-        AudioManager.inst.OnAudioSettingsChanged -= _audioSettingsChanged;
-    }
-
     private void _audioSettingsChanged()
     {
         if (isMusic)
@@ -31,4 +27,10 @@ public class AudioMuter : MonoBehaviour
         if (!isMusic)
             _audioSource.volume = (AudioManager.settings.sounds) ? _baseVolume : 0F;
     }
+
+    private void OnDestroy()
+    {
+        AudioManager.inst.OnAudioSettingsChanged -= _audioSettingsChanged;
+    }
+
 }

@@ -79,6 +79,7 @@ public class PlayerMovements : MonoBehaviour
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             rb.velocity = Vector2.up * jumpForce;
+            AudioManager.PlaySound(AudioManager.inst.SoundButton);
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && !isGrounded && canJump && canDoubleJump)
