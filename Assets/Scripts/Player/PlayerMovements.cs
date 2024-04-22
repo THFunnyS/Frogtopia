@@ -49,6 +49,12 @@ public class PlayerMovements : MonoBehaviour
     private float armorTime = 5f;
     private float armorCooldown = 10f;
 
+    public GameObject PoisonCloud;
+    public bool isPoisonCloud = false;
+    public float PoisonCloudDamage = 1;
+    public int numOfPoisonCloudHits = 3;
+    private float PoisonCloudCooldown = 10f;
+
     public AudioSource moveSound;
     private void Start()
     {
@@ -99,9 +105,10 @@ public class PlayerMovements : MonoBehaviour
             StartCoroutine(Dash());
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && isArmorSkin) //бронированная кожа
+        if (Input.GetKeyDown(KeyCode.F)) //скиллы тела жабы
         {
-            StartCoroutine(ArmorSkin());
+            if (isArmorSkin) StartCoroutine(ArmorSkin()); //бронированная кожа
+            if (isPoisonCloud) StartCoroutine(PoisonCloudSkill());
         }
 
         if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.35f && isGrounded) //звуки ходьбы
@@ -171,12 +178,20 @@ public class PlayerMovements : MonoBehaviour
     {
         isArmorSkin = false;
         armorResist = 0.7f;
-        Sprite.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+        Sprite.GetComponent<SpriteRenderer>().color = new Color(130, 60, 30);
         yield return new WaitForSeconds(armorTime);
         armorResist = 1f;
         Sprite.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
         yield return new WaitForSeconds(armorCooldown);
         isArmorSkin = true;
+    }
+
+    private IEnumerator PoisonCloudSkill()
+    {
+        Instantiate(PoisonCloud, transform.position, transform.rotation);
+        isPoisonCloud = false;
+        yield return new WaitForSeconds(PoisonCloudCooldown);
+        isPoisonCloud = true;
     }
 
     private IEnumerator Dash() //уворот
