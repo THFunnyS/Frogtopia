@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 [AddComponentMenu("Audio/Audio Manager Component")]
@@ -11,6 +11,7 @@ public class AudioManager : SingletonPersistent<AudioManager>
     [Header("Sound")]
     public GameObject SoundButton;
     public GameObject PalyerGrassWalk;
+
 
     public Action OnAudioSettingsChanged;
 
@@ -34,7 +35,7 @@ public class AudioManager : SingletonPersistent<AudioManager>
         settings.music = System.Convert.ToBoolean(PlayerPrefs.GetString("music", "true"));
         settings.sounds = System.Convert.ToBoolean(PlayerPrefs.GetString("sounds", "true"));
     }
-
+    
     public void saveSettings()
     {
         PlayerPrefs.SetString("music", settings.music.ToString());
