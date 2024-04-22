@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public enum Effects
 {
-    /*BODY  */  DJUMP,
-    /*TONGUE*/ Knockback, PosionShot
+    /*BODY  */  DJUMP, ArmorSkin,
+    /*TONGUE*/ Knockback, PoisonShot , PoisonHit, Vampirism, PlayerKnockback
 }
 
 public class PickableMutation : MonoBehaviour
@@ -22,11 +23,16 @@ public class PickableMutation : MonoBehaviour
     float Amp = 0.25f;
     float Freq = 2;
     Vector2 StartPos;
+
+    private GameObject Tongue;
+    private GameObject player;
+
     void Start()
-    {
-        
+    {  
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         StartPos = transform.position;
+        Tongue = GameObject.FindGameObjectWithTag("PlayerTongue");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
@@ -50,18 +56,30 @@ public class PickableMutation : MonoBehaviour
 
     void PickUp()
     {
-        if (pickable == true && Input.GetKeyDown(KeyCode.E))
+        if (pickable && Input.GetKeyDown(KeyCode.E))
         {
             switch (effects)
             {
                 case Effects.DJUMP:
-                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovements>().canDoubleJump = true;
+                    player.GetComponent<PlayerMovements>().canDoubleJump = true; 
                     break;
                 case Effects.Knockback:
-                    GameObject.FindGameObjectWithTag("PlayerTongue").GetComponent<TongueAttack>().Knockback = true;
+                    Tongue.GetComponent<TongueAttack>().Knockback = true;
                     break;
-                case Effects.PosionShot:
-                    GameObject.FindGameObjectWithTag("PlayerTongue").GetComponent<TongueShot>().isPoison = true;
+                case Effects.PoisonShot:
+                    Tongue.GetComponent<TongueShot>().isPoison = true;
+                    break;
+                case Effects.PoisonHit:
+                    Tongue.GetComponent<TongueAttack>().isPoison = true;
+                    break;
+                case Effects.Vampirism:
+                    Tongue.GetComponent<TongueAttack>().isVampirism = true;
+                    break;
+                case Effects.ArmorSkin:
+                    player.GetComponent<PlayerMovements>().isArmorSkin = true;
+                    break;
+                case Effects.PlayerKnockback:
+                    Tongue.GetComponent<TongueAttack>().PlayerKnockback = true;
                     break;
             }
             Destroy(gameObject);

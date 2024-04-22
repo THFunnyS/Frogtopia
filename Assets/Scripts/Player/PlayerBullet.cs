@@ -6,9 +6,9 @@ public class PlayerBullet : MonoBehaviour
 {
     Rigidbody2D rb;
     public float speed;
-    public int Damage;
+    public float Damage;
 
-    public int PoisonDamage = 1;
+    public float PoisonDamage = 1;
     public int numOfPosionHits = 3;
     public bool isPoison = false;
     void Start()
@@ -20,8 +20,9 @@ public class PlayerBullet : MonoBehaviour
 
     void Update()
     {
-        if (GameObject.FindGameObjectWithTag("PlayerTongue").GetComponent<TongueShot>().isPoison == true)
+        if (GameObject.FindGameObjectWithTag("PlayerTongue").GetComponent<TongueShot>().isPoison)
         {
+            //смена цвета для отравленых снарядов
             GetComponent<SpriteRenderer>().color = new Color(0, 255, 0);
             isPoison = true;
         }

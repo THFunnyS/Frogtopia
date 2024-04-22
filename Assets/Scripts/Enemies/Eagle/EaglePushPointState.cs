@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 
-public class PushPointState : State
+public class EaglePushPointState : State
 {
     private Enemy _enemy;
     private Vector3 _target;
     private Vector3 _direction;
 
-    public PushPointState(Enemy enemy, Vector3 target)
+    public EaglePushPointState(Enemy enemy)
     {
         _enemy = enemy;
-        _target = target;
-        _direction = target - enemy.transform.position;
+        _target = _enemy.Target.position;
+        _direction = _target - enemy.transform.position;
     }
 
     public override void Enter()
@@ -31,7 +31,7 @@ public class PushPointState : State
 
         if ((_enemy.transform.position - _target).magnitude < 0.1f)
         {
-            _enemy.SM.ChangeState(new FlyBehindState(_enemy, _direction));
+            _enemy.SM.ChangeState(new EagleFlyBehindState(_enemy, _direction));
         }
     }
 }

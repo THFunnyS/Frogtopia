@@ -2,12 +2,12 @@
 using System.Collections;
 using System;
 
-public class FlyBehindState : State
+public class EagleFlyBehindState : State
 {
     private Enemy _enemy;
     private Vector3 _target;
 
-    public FlyBehindState(Enemy enemy, Vector3 direction)
+    public EagleFlyBehindState(Enemy enemy, Vector3 direction)
     {
         _enemy = enemy;
 
@@ -33,7 +33,7 @@ public class FlyBehindState : State
 
         if ((_enemy.transform.position - _target).magnitude < 0.1f)
         {
-            _enemy.SM.ChangeState(new RestState(_enemy));
+            _enemy.SM.ChangeState(new EagleRestState(_enemy));
         }
     }
 }

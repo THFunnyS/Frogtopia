@@ -8,26 +8,11 @@ public class Fly : Enemy
     public override void Start()
     {
         base.Start();
-
-        StartCoroutine(CheckTarget());
+        SM.Initialize(new FlyIdleState(this, _bullet));
     }
 
     public override void Update()
     {
         base.Update();
-    }
-
-    IEnumerator CheckTarget()
-    {
-        while(true)
-        {
-            yield return new WaitForSeconds(3f);
-
-            if (Vector2.Distance(transform.position, Target.position) < AgressDistance)
-            {
-                GameObject bullet = Instantiate(_bullet, gameObject.transform);
-                Destroy(bullet, 5f);
-            }
-        }
     }
 }
