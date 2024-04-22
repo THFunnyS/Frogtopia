@@ -106,7 +106,9 @@ public class PlayerMovements : MonoBehaviour
 
         if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.35f && isGrounded) //звуки ходьбы
         {
+            //AudioManager.PlaySound(AudioManager.inst.PalyerGrassWalk);
             if (!moveSound.isPlaying) moveSound.Play();
+
         }
         else
         {
