@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 [AddComponentMenu("Audio/Audio Manager Component")]
@@ -8,8 +6,10 @@ public class AudioManager : SingletonPersistent<AudioManager>
 {
     public static AudioSettingsModel settings = null;
 
-    // Sounds
-    public GameObject PrefabSoundBoom;
+    public static float LimitTimeSound = 10f;
+
+    [Header("Sound")]
+    public GameObject SoundButton;
 
     public Action OnAudioSettingsChanged;
 
@@ -17,6 +17,11 @@ public class AudioManager : SingletonPersistent<AudioManager>
     {
         base.Awake();
 
+        InitializeManager();
+    }
+
+    private void InitializeManager()
+    {
         if (settings == null)
             settings = new AudioSettingsModel();
 
@@ -28,41 +33,33 @@ public class AudioManager : SingletonPersistent<AudioManager>
         settings.music = System.Convert.ToBoolean(PlayerPrefs.GetString("music", "true"));
         settings.sounds = System.Convert.ToBoolean(PlayerPrefs.GetString("sounds", "true"));
     }
-
+    
     public void saveSettings()
     {
         PlayerPrefs.SetString("music", settings.music.ToString());
         PlayerPrefs.SetString("sounds", settings.sounds.ToString());
         PlayerPrefs.Save();
     }
-
-    public void toggleSounds()
+    
+    public void toggleSounds(bool enabled)
     {
-        settings.sounds = !settings.sounds;
+        settings.sounds = enabled;
+        saveSettings();
+        if (OnAudioSettingsChanged != null)
+            OnAudioSettingsChanged();
+    }
+    
+    public void toggleMusic(bool enabled)
+    {
+        settings.music = enabled;
         saveSettings();
         if (OnAudioSettingsChanged != null)
             OnAudioSettingsChanged();
     }
 
-    public void toggleMusic()
+    public static void PlaySound(GameObject Sound)
     {
-        settings.music = !settings.music;
-        saveSettings();
-        if (OnAudioSettingsChanged != null)
-            OnAudioSettingsChanged();
-    }
-
-    public void PlaySound(GameObject Prefab)
-    {
-        var sound = Instantiate(Prefab);
-        Destroy(sound, 10f);
-    }
-
-    private WaitForSeconds OneSec = new WaitForSeconds(1);
-
-    private IEnumerator SoundDestroy(GameObject sound)
-    {
-        yield return OneSec;
-        sound.gameObject.SetActive(false);
+        GameObject sound = Instantiate(Sound);
+        Destroy(sound, LimitTimeSound);
     }
 }

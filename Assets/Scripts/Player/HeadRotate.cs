@@ -24,6 +24,6 @@ public class HeadRotate : MonoBehaviour
             LocalScale.x = +1f;
             LocalScale.y = +1f;
         }
-        transform.localScale = LocalScale;
+        transform.GetChild(0).localScale = LocalScale;
     }
 }
