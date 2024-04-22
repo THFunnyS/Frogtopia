@@ -6,7 +6,8 @@ public class FlyBullet : MonoBehaviour
 {
     private Rigidbody2D _rb;
     private Transform _target;
-    public int Damage;
+    public float Damage;
+    public float KnockbackPower;
 
     private void Awake()
     {

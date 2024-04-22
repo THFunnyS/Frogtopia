@@ -6,12 +6,16 @@ using UnityEngine.UI;
 
 public class PlayerMovements : MonoBehaviour
 {
-    public int lives;
+    public GameObject Sprite;
+    public float lives;
     private int MaxLives;
-    private int TakenDamage;
-    public float speed;
-    public float jumpForce;
+    private float TakenDamage;
+
     private float moveInput;
+    public float speed;
+
+    private Rigidbody2D rb;
+    public float jumpForce;
     public bool canDoubleJump;
     private bool canJump;
 
@@ -26,8 +30,6 @@ public class PlayerMovements : MonoBehaviour
     private float dashPower = 24f;
     private float dashTime = 0.2f;
     private float dashCooldown = 0.5f;
-
-    private Rigidbody2D rb;
     [SerializeField] private TrailRenderer tr;
 
     private bool isGrounded;
@@ -42,12 +44,17 @@ public class PlayerMovements : MonoBehaviour
     public GameObject DeathPanel;
     private bool isInvulnerable = false;
 
+    public bool isArmorSkin = false;
+    private float armorResist = 1f;
+    private float armorTime = 5f;
+    private float armorCooldown = 10f;
+
+    public AudioSource moveSound;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         cam = FindObjectOfType<Camera>();
         healthBar = GameObject.Find("HelathBar").GetComponent<Image>();
-        //DeathPanel = GameObject.Find("DeathPanel");
         anim = GetComponent<Animator>();
         MaxLives = 15;
     }
@@ -66,33 +73,49 @@ public class PlayerMovements : MonoBehaviour
 
         if (isDashing) return;
 
-        healthBar.fillAmount = (float)lives / MaxLives;
+        healthBar.fillAmount = lives / MaxLives; //высчитывание хп дл€ полоски хп
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, Ground);
         if (isGrounded) canJump = true;
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S)) //спуск с платформы
         {
             Physics2D.IgnoreLayerCollision(3, 7, true);
             Invoke("IgnoreLayerOff", 0.5f);
         }
 
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space)) //прыжок
         {
             rb.velocity = Vector2.up * jumpForce;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !isGrounded && canJump && canDoubleJump)
+        if (Input.GetKeyDown(KeyCode.Space) && !isGrounded && canJump && canDoubleJump) //двойной прыжок
         {
             rb.velocity = Vector2.up * jumpForce;
             canJump = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash) //уворот
         {
             StartCoroutine(Dash());
         }
 
-        if (lives <= 0) Death();
+        if (Input.GetKeyDown(KeyCode.F) && isArmorSkin) //бронированна€ кожа
+        {
+            StartCoroutine(ArmorSkin());
+        }
+
+        if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.35f && isGrounded) //звуки ходьбы
+        {
+            //AudioManager.PlaySound(AudioManager.inst.PalyerGrassWalk);
+            if (!moveSound.isPlaying) moveSound.Play();
+
+        }
+        else
+        {
+            moveSound.Stop();
+        }
+
+        if (lives <= 0) Death(); //смерть
     }
 
     public void OnTriggerEnter2D(Collider2D col)
@@ -103,17 +126,19 @@ public class PlayerMovements : MonoBehaviour
             {
                 case "Enemy":
                     TakenDamage = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>().DealtDamage;
-                    lives -= TakenDamage;
+                    lives -= TakenDamage * armorResist;
                     anim.SetTrigger("Damaged");
                     isInvulnerable = true;
+                    StartCoroutine(PushedAway(GameObject.FindGameObjectWithTag("Enemy").transform, GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>().KnockbackPower));
                     AudioSource.PlayClipAtPoint(pain, transform.position);
                     StartCoroutine(SetInvulnerability(1.5f));
                     break;
                 case "EnemyBullet":
                     TakenDamage = GameObject.FindGameObjectWithTag("EnemyBullet").GetComponent<FlyBullet>().Damage;
-                    lives -= TakenDamage;
+                    lives -= TakenDamage * armorResist;
                     anim.SetTrigger("Damaged");
                     isInvulnerable = true;
+                    StartCoroutine(PushedAway(GameObject.FindGameObjectWithTag("EnemyBullet").transform, GameObject.FindGameObjectWithTag("EnemyBullet").GetComponent<FlyBullet>().KnockbackPower));
                     AudioSource.PlayClipAtPoint(pain, transform.position);
                     StartCoroutine(SetInvulnerability(1.5f));
                     break;
@@ -121,7 +146,7 @@ public class PlayerMovements : MonoBehaviour
         }
     }
 
-    void Flip()
+    void Flip() //поворот моделки игрока
     {
         if (Input.mousePosition.x < pos.x && isFacingRight)
         {
@@ -142,7 +167,19 @@ public class PlayerMovements : MonoBehaviour
         }
     }
 
-    private IEnumerator Dash()
+    private IEnumerator ArmorSkin() //бронированна€ кожа
+    {
+        isArmorSkin = false;
+        armorResist = 0.7f;
+        Sprite.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+        yield return new WaitForSeconds(armorTime);
+        armorResist = 1f;
+        Sprite.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+        yield return new WaitForSeconds(armorCooldown);
+        isArmorSkin = true;
+    }
+
+    private IEnumerator Dash() //уворот
     {
         canDash = false;
         isDashing = true;
@@ -159,7 +196,22 @@ public class PlayerMovements : MonoBehaviour
         canDash = true;
     }
 
-    private IEnumerator SetInvulnerability(float time)
+    private IEnumerator PushedAway(Transform pushFrom, float pushPower) //откидывание при получении урона
+    {
+        float time = 0;
+        while (0.1 > time)
+        {
+            //pushFrom.transform.position = new Vector2(pushFrom.transform.position.x, 0);
+            //Transform tr = transform;
+            //tr.transform.position = new Vector2(this.transform.position.x, 0);
+            time += Time.deltaTime;
+            Vector2 direction = (pushFrom.transform.position - this.transform.position).normalized;
+            rb.AddForce(-direction * pushPower);
+        }
+        yield return 0;
+    }
+
+    private IEnumerator SetInvulnerability(float time) //неу€звимость
     {
         isInvulnerable = true;
         yield return new WaitForSeconds(time);
@@ -167,12 +219,12 @@ public class PlayerMovements : MonoBehaviour
         anim.SetTrigger("DamageGone");
     }
 
-    void IgnoreLayerOff()
+    void IgnoreLayerOff() //игнор слоЄв дл€ спуска с платформы
     {
         Physics2D.IgnoreLayerCollision(3, 7, false);
     }
 
-    public void Death()
+    public void Death() //смерть
     {
         DeathPanel.SetActive(true);
         speed = 0f;

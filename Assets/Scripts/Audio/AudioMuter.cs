@@ -32,5 +32,4 @@ public class AudioMuter : MonoBehaviour
     {
         AudioManager.inst.OnAudioSettingsChanged -= _audioSettingsChanged;
     }
-
 }

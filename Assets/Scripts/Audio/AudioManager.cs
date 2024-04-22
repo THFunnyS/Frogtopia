@@ -10,6 +10,8 @@ public class AudioManager : SingletonPersistent<AudioManager>
 
     [Header("Sound")]
     public GameObject SoundButton;
+    public GameObject PalyerGrassWalk;
+
 
     public Action OnAudioSettingsChanged;
 
@@ -40,7 +42,7 @@ public class AudioManager : SingletonPersistent<AudioManager>
         PlayerPrefs.SetString("sounds", settings.sounds.ToString());
         PlayerPrefs.Save();
     }
-    
+
     public void toggleSounds(bool enabled)
     {
         settings.sounds = enabled;
@@ -48,7 +50,7 @@ public class AudioManager : SingletonPersistent<AudioManager>
         if (OnAudioSettingsChanged != null)
             OnAudioSettingsChanged();
     }
-    
+
     public void toggleMusic(bool enabled)
     {
         settings.music = enabled;
