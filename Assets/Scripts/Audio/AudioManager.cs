@@ -25,7 +25,7 @@ public class AudioManager : SingletonPersistent<AudioManager>
         if (settings == null)
             settings = new AudioSettingsModel();
 
-        loadSettings();
+        // loadSettings();
     }
 
     public void loadSettings()
@@ -45,6 +45,7 @@ public class AudioManager : SingletonPersistent<AudioManager>
     {
         settings.sounds = enabled;
         saveSettings();
+
         if (OnAudioSettingsChanged != null)
             OnAudioSettingsChanged();
     }
@@ -53,6 +54,7 @@ public class AudioManager : SingletonPersistent<AudioManager>
     {
         settings.music = enabled;
         saveSettings();
+
         if (OnAudioSettingsChanged != null)
             OnAudioSettingsChanged();
     }
@@ -61,5 +63,10 @@ public class AudioManager : SingletonPersistent<AudioManager>
     {
         GameObject sound = Instantiate(Sound);
         Destroy(sound, LimitTimeSound);
+    }
+
+    public static GameObject PlaySoundLoop(GameObject Sound)
+    {
+        return Instantiate(Sound);
     }
 }
