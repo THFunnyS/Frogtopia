@@ -38,12 +38,10 @@ public class PlayerMovements : MonoBehaviour
     public bool isArmed = false;
 
     public Image healthBar;
-    public AudioClip pain;
     public AudioClip fallSound;
     public GameObject DeathPanel;
     private bool isInvulnerable = false;
 
-    public AudioSource moveSound;
     private bool groundFlag = false;
     private bool isLanding = false;
 
@@ -90,14 +88,15 @@ public class PlayerMovements : MonoBehaviour
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             rb.velocity = Vector2.up * jumpForce;
-            //isLanding = true;
+            isLanding = true;
+            AudioManager.PlaySound(AudioManager.inst.Jump);
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && !isGrounded && canJump && canDoubleJump)
         {
             rb.velocity = Vector2.up * jumpForce;
             canJump = false;
-            //isLanding = true;
+            AudioManager.PlaySound(AudioManager.inst.Jump);
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
@@ -109,11 +108,11 @@ public class PlayerMovements : MonoBehaviour
 
         if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.35f && isGrounded)
         {
-            if (!moveSound.isPlaying) moveSound.Play();
+          // if (!moveSound.isPlaying) moveSound.Play();
         }
         else
         {
-            moveSound.Stop();
+          //  moveSound.Stop();
         }
     }
 
@@ -128,7 +127,7 @@ public class PlayerMovements : MonoBehaviour
                     lives -= TakenDamage;
                     anim.SetTrigger("Damaged");
                     isInvulnerable = true;
-                    AudioSource.PlayClipAtPoint(pain, transform.position);
+                    AudioManager.PlaySound(AudioManager.inst.PlayerDamage);
                     StartCoroutine(SetInvulnerability(1.5f));
                     break;
                 case "EnemyBullet":
@@ -136,7 +135,7 @@ public class PlayerMovements : MonoBehaviour
                     lives -= TakenDamage;
                     anim.SetTrigger("Damaged");
                     isInvulnerable = true;
-                    AudioSource.PlayClipAtPoint(pain, transform.position);
+                    AudioManager.PlaySound(AudioManager.inst.PlayerDamage);
                     StartCoroutine(SetInvulnerability(1.5f));
                     break;
             }
@@ -166,6 +165,7 @@ public class PlayerMovements : MonoBehaviour
 
     private IEnumerator Dash()
     {
+        AudioManager.PlaySound(AudioManager.inst.Dash);
         canDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;

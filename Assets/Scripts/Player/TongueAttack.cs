@@ -7,7 +7,6 @@ public class TongueAttack : MonoBehaviour
     public Animator anim;
     public int Damage;
     public bool Knockback = false;
-    public AudioClip attackSound;
     private bool isAttacking = false;
 
     void Update()
@@ -21,8 +20,8 @@ public class TongueAttack : MonoBehaviour
     IEnumerator PlayAttackSound()
     {
         isAttacking = true;
-        AudioSource.PlayClipAtPoint(attackSound, transform.position);
-        yield return new WaitForSeconds(attackSound.length);
+        AudioManager.PlaySound(AudioManager.inst.TongueAttack);
+        yield return new WaitForSeconds(0.5f);
         isAttacking = false;
     }
 }

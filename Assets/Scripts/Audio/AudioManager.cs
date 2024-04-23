@@ -10,6 +10,15 @@ public class AudioManager : SingletonPersistent<AudioManager>
 
     [Header("Sound")]
     public GameObject SoundButton;
+    public GameObject EagleAttack;
+    public GameObject PlayerDamage;
+    public GameObject TongueAttack;
+    public GameObject Dash;
+    public GameObject Jump;
+    public GameObject Landing;
+    public GameObject WeaponAttack;
+    public GameObject StepSound;
+
 
     public Action OnAudioSettingsChanged;
 
@@ -41,17 +50,17 @@ public class AudioManager : SingletonPersistent<AudioManager>
         PlayerPrefs.Save();
     }
     
-    public void toggleSounds(bool enabled)
+    public void toggleSounds()
     {
-        settings.sounds = enabled;
+        settings.sounds = !settings.sounds;
         saveSettings();
         if (OnAudioSettingsChanged != null)
             OnAudioSettingsChanged();
     }
     
-    public void toggleMusic(bool enabled)
+    public void toggleMusic()
     {
-        settings.music = enabled;
+        settings.music = !settings.music;
         saveSettings();
         if (OnAudioSettingsChanged != null)
             OnAudioSettingsChanged();
