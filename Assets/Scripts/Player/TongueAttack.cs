@@ -45,11 +45,10 @@ public class TongueAttack : MonoBehaviour
     IEnumerator PlayAttackSound()
     {
         isAttacking = true;
-        AudioSource.PlayClipAtPoint(attackSound, transform.position);
-        yield return new WaitForSeconds(attackSound.length);
+        AudioManager.PlaySound(AudioManager.inst.TongueAttack);
+        yield return new WaitForSeconds(0.5f);
         isAttacking = false;
-    }
-
+    } 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if ((col.tag == "Enemy" || col.gameObject.layer == 6) && PlayerKnockback)
