@@ -27,7 +27,6 @@ public class TongueAttack : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
-    private bool isAttacking = false;
 
     void Update()
     {

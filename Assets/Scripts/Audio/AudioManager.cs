@@ -18,6 +18,8 @@ public class AudioManager : SingletonPersistent<AudioManager>
     public GameObject Landing;
     public GameObject WeaponAttack;
     public GameObject StepSound;
+    public GameObject LadderMove;
+    public GameObject FlyShot;
 
 
     public Action OnAudioSettingsChanged;

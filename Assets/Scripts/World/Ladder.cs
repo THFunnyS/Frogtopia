@@ -6,15 +6,17 @@ using UnityEngine;
 public class Ladder : MonoBehaviour
 {
     public float speed = 5;
-    //public AudioSource moveSound;
+    private GameObject moveSound;
+    private bool isMoveSound = false;
 
     private void OnTriggerStay2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            /*if (!moveSound.isPlaying) {
-                moveSound.Play();
-            }*/
+            if (!isMoveSound) {
+                moveSound = AudioManager.PlaySoundLoop(AudioManager.inst.LadderMove);
+                isMoveSound = true;
+            }
             if (Input.GetKey(KeyCode.W))
             {
                 col.GetComponent<Rigidbody2D>().gravityScale = 0;
@@ -29,7 +31,8 @@ public class Ladder : MonoBehaviour
             {
                 col.GetComponent<Rigidbody2D>().gravityScale = 0;
                 col.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-                //moveSound.Stop();
+                Destroy(moveSound);
+                isMoveSound = false;
             }
         }
     }
@@ -37,6 +40,7 @@ public class Ladder : MonoBehaviour
     private void OnTriggerExit2D(Collider2D col)
     {
         col.GetComponent<Rigidbody2D>().gravityScale = 1.5f;
-        //moveSound.Stop();
+        Destroy(moveSound);
+        isMoveSound = false;
     }
 }
