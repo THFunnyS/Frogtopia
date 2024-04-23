@@ -52,12 +52,12 @@ public class PickableWeapon : MonoBehaviour
 
     void PickUp()
     {
-        if (pickable == true && Input.GetKeyDown(KeyCode.E))
+        if (pickable && Input.GetKeyDown(KeyCode.E))
         {
             icon.GetComponent<Image>().sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
             Instantiate(weapon, weaponPlace.transform);
             currentWeaponChild = currentWeapon.transform.GetChild(0).gameObject;
-            if (isArmed == true)
+            if (isArmed)
             {
                 DropCurrentWeapon();
             }

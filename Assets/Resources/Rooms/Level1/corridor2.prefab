@@ -710,7 +710,7 @@ GameObject:
   - component: {fileID: 2191828604595545442}
   - component: {fileID: 2191828604595545443}
   - component: {fileID: 2191828604595545440}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5602,7 +5602,7 @@ GameObject:
   - component: {fileID: 8183325113630567879}
   - component: {fileID: 5715836716637656786}
   - component: {fileID: 4047789967639520464}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5820,7 +5820,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1

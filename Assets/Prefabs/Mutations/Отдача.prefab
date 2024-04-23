@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  effects: 1
+  effects: 2
   pickUpMutationButton: {fileID: 8519722219142135571}
 --- !u!222 &8519722219937956320
 CanvasRenderer:
