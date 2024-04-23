@@ -5,16 +5,21 @@ using UnityEngine;
 public class PauseGame : MonoBehaviour
 {
     public GameObject PausePanel;
-    private bool isPause = false;
+    public GameObject SettingsPanel;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isPause)
+        if (Input.GetKeyDown(KeyCode.Escape) && !PausePanel.activeSelf)
         {
-            Pause();
+            if (SettingsPanel.activeSelf)
+            {
+                PausePanel.SetActive(true);
+                SettingsPanel.SetActive(false);
+            }
+            else Pause();
         }
 
-        else if (Input.GetKeyDown(KeyCode.Escape) && isPause)
+        else if (Input.GetKeyDown(KeyCode.Escape) && PausePanel.activeSelf)
         {
             Continue();
         }
@@ -23,14 +28,12 @@ public class PauseGame : MonoBehaviour
     public void Pause()
     {
         PausePanel.SetActive(true);
-        isPause = true;
         Time.timeScale = 0;
     }
 
     public void Continue()
     {
         PausePanel.SetActive(false);
-        isPause = false;
         Time.timeScale = 1;
     }
 }

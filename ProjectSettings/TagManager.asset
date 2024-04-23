@@ -11,8 +11,6 @@ TagManager:
   - PickableItem
   - PickableWeapon
   - EnemyBullet
-  - PlayerWeaponPlace
-  - Ground
   layers:
   - Default
   - TransparentFX

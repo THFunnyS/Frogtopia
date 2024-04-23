@@ -52,7 +52,7 @@ MonoBehaviour:
   AgressDistance: 10
   Speed: 10
   RestTime: 2
-  Sprite: {fileID: 7638070372234652877}
+  Sprite: {fileID: 7638070372304803550}
 --- !u!70 &7638070372234652872
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
