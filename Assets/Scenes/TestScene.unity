@@ -976,11 +976,6 @@ Transform:
   m_Father: {fileID: 1936654483}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &666726649 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4828962903666503015, guid: 662ab77d61155a042ab71d5d18a1b61d, type: 3}
-  m_PrefabInstance: {fileID: 4828962904246705566}
-  m_PrefabAsset: {fileID: 0}
 --- !u!82 &666726650 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 4828962903666503012, guid: 662ab77d61155a042ab71d5d18a1b61d, type: 3}
@@ -4628,11 +4623,6 @@ Transform:
   m_Father: {fileID: 1936654483}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1925772696 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5628743028055063458, guid: c0821de766bd4484291c4f017809caa4, type: 3}
-  m_PrefabInstance: {fileID: 5628743028612005815}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1935284747
 GameObject:
   m_ObjectHideFlags: 0
@@ -5313,7 +5303,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SoundButton: {fileID: 4828962903666503015, guid: 662ab77d61155a042ab71d5d18a1b61d, type: 3}
-  PalyerGrassWalk: {fileID: 666726649}
+  EagleAttack: {fileID: 0}
+  PlayerDamage: {fileID: 0}
+  TongueAttack: {fileID: 0}
+  Dash: {fileID: 0}
+  Jump: {fileID: 0}
+  Landing: {fileID: 0}
+  WeaponAttack: {fileID: 0}
+  StepSound: {fileID: 0}
+  LadderMove: {fileID: 0}
+  FlyShot: {fileID: 0}
 --- !u!4 &2041284371
 Transform:
   m_ObjectHideFlags: 0
@@ -7106,10 +7105,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5628743029211292829, guid: c0821de766bd4484291c4f017809caa4, type: 3}
-      propertyPath: Sprite
-      value: 
-      objectReference: {fileID: 1925772696}
-    - target: {fileID: 5628743029211292829, guid: c0821de766bd4484291c4f017809caa4, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 70600069}
@@ -7121,25 +7116,9 @@ PrefabInstance:
       propertyPath: DeathPanel
       value: 
       objectReference: {fileID: 2026001037}
-    - target: {fileID: 5628743029211292829, guid: c0821de766bd4484291c4f017809caa4, type: 3}
-      propertyPath: PoisonCloud
-      value: 
-      objectReference: {fileID: 1420765877489313484, guid: 0f94fa6873046d0458bc3b096e5d43e8, type: 3}
-    - target: {fileID: 5628743029211292829, guid: c0821de766bd4484291c4f017809caa4, type: 3}
-      propertyPath: isPoisonCloud
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5910781539057149677, guid: c0821de766bd4484291c4f017809caa4, type: 3}
-      propertyPath: m_LinearDrag
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7054450062365495489, guid: c0821de766bd4484291c4f017809caa4, type: 3}
       propertyPath: isActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7323712504524642004, guid: c0821de766bd4484291c4f017809caa4, type: 3}
-      propertyPath: m_audioClip
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7054450062365495489, guid: c0821de766bd4484291c4f017809caa4, type: 3}

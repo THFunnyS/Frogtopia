@@ -25,7 +25,7 @@ public class PlayerMovements : MonoBehaviour
     Vector3 pos;
     Camera cam;
 
-    private bool canDash = true;
+    public bool canDash = true;
     private bool isDashing;
     private float dashPower = 24f;
     private float dashTime = 0.2f;
@@ -108,7 +108,7 @@ public class PlayerMovements : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F)) //скиллы тела жабы
         {
             if (isArmorSkin) StartCoroutine(ArmorSkin()); //бронированная кожа
-            if (isPoisonCloud) StartCoroutine(PoisonCloudSkill());
+            if (isPoisonCloud) StartCoroutine(PoisonCloudSkill()); //ядовитое облако
         }
 
         if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.35f && isGrounded) //звуки ходьбы
@@ -186,7 +186,7 @@ public class PlayerMovements : MonoBehaviour
         isArmorSkin = true;
     }
 
-    private IEnumerator PoisonCloudSkill()
+    private IEnumerator PoisonCloudSkill() //ядовитое облако
     {
         Instantiate(PoisonCloud, transform.position, transform.rotation);
         isPoisonCloud = false;

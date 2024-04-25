@@ -491,7 +491,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 5628743028496648221}
   Damage: 1
+  attackSound: {fileID: 8300000, guid: 87cbf7d701621024f94c1821393401fc, type: 3}
   Knockback: 0
+  isPoison: 0
+  PoisonDamage: 1
+  numOfPoisonHits: 3
+  isVampirism: 0
+  percentOfVamp: 0.1
+  PlayerKnockback: 0
 --- !u!95 &5628743028496648221
 Animator:
   serializedVersion: 5
@@ -1006,6 +1013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a9cbe6a42ca334f89f0e5a57eee334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Sprite: {fileID: 5628743028055063458}
   lives: 15
   speed: 9
   jumpForce: 10
@@ -1020,6 +1028,12 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   pain: {fileID: 8300000, guid: 1ef68e2d69528034096e6e329b50e636, type: 3}
   DeathPanel: {fileID: 0}
+  isArmorSkin: 0
+  PoisonCloud: {fileID: 1420765877489313484, guid: 0f94fa6873046d0458bc3b096e5d43e8, type: 3}
+  isPoisonCloud: 0
+  PoisonCloudDamage: 1
+  numOfPoisonCloudHits: 3
+  moveSound: {fileID: 0}
 --- !u!50 &5910781539057149677
 Rigidbody2D:
   serializedVersion: 4
