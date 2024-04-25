@@ -33,7 +33,6 @@ public class FlyAttackState : State
             if (Vector2.Distance(_enemy.transform.position, _enemy.Target.position) < 1.7f * _enemy.AgressDistance)
             {
                 GameObject bullet = Object.Instantiate(_bullet, _enemy.transform);
-                AudioManager.PlaySound(AudioManager.inst.FlyShot);
                 Object.Destroy(bullet, 5f);
             }
             startTime = Time.time;

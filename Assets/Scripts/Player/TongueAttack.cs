@@ -44,10 +44,11 @@ public class TongueAttack : MonoBehaviour
     IEnumerator PlayAttackSound()
     {
         isAttacking = true;
-        AudioManager.PlaySound(AudioManager.inst.TongueAttack);
-        yield return new WaitForSeconds(0.5f);
+        AudioSource.PlayClipAtPoint(attackSound, transform.position);
+        yield return new WaitForSeconds(attackSound.length);
         isAttacking = false;
-    } 
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if ((col.tag == "Enemy" || col.gameObject.layer == 6) && PlayerKnockback)
@@ -56,7 +57,7 @@ public class TongueAttack : MonoBehaviour
         }
     }
 
-    private IEnumerator PushedAway(Transform pushFrom, float pushPower) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    private IEnumerator PushedAway(Transform pushFrom, float pushPower) //откидывание от поверхностей и врагов
     {
         float time = 0;
         while (0.1 > time)

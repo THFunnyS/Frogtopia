@@ -16,7 +16,6 @@ public class EaglePushPointState : State
     public override void Enter()
     {
         base.Enter();
-        AudioManager.PlaySound(AudioManager.inst.EagleAttack);
     }
 
     public override void Exit()

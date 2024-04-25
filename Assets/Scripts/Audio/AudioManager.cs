@@ -10,16 +10,7 @@ public class AudioManager : SingletonPersistent<AudioManager>
 
     [Header("Sound")]
     public GameObject SoundButton;
-    public GameObject EagleAttack;
-    public GameObject PlayerDamage;
-    public GameObject TongueAttack;
-    public GameObject Dash;
-    public GameObject Jump;
-    public GameObject Landing;
-    public GameObject WeaponAttack;
-    public GameObject StepSound;
-    public GameObject LadderMove;
-    public GameObject FlyShot;
+    public GameObject PalyerGrassWalk;
 
 
     public Action OnAudioSettingsChanged;
@@ -36,7 +27,7 @@ public class AudioManager : SingletonPersistent<AudioManager>
         if (settings == null)
             settings = new AudioSettingsModel();
 
-        // loadSettings();
+        loadSettings();
     }
 
     public void loadSettings()
@@ -54,18 +45,16 @@ public class AudioManager : SingletonPersistent<AudioManager>
 
     public void toggleSounds(bool enabled)
     {
-        settings.sounds = !settings.sounds;
+        settings.sounds = enabled;
         saveSettings();
-
         if (OnAudioSettingsChanged != null)
             OnAudioSettingsChanged();
     }
 
     public void toggleMusic(bool enabled)
     {
-        settings.music = !settings.music;
+        settings.music = enabled;
         saveSettings();
-
         if (OnAudioSettingsChanged != null)
             OnAudioSettingsChanged();
     }
@@ -74,10 +63,5 @@ public class AudioManager : SingletonPersistent<AudioManager>
     {
         GameObject sound = Instantiate(Sound);
         Destroy(sound, LimitTimeSound);
-    }
-
-    public static GameObject PlaySoundLoop(GameObject Sound)
-    {
-        return Instantiate(Sound);
     }
 }
