@@ -11,6 +11,7 @@ TagManager:
   - PickableItem
   - PickableWeapon
   - EnemyBullet
+  - PlayerPoisonGas
   layers:
   - Default
   - TransparentFX
