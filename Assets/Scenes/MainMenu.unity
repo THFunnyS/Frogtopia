@@ -293,6 +293,61 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &523157877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 523157879}
+  - component: {fileID: 523157878}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &523157878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523157877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8889947773cf554f9d8384a822c9ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundButton: {fileID: 7719079084626195402, guid: cf07de7c5bdbea74e8dbbf1c1648975f, type: 3}
+  EagleAttack: {fileID: 7244925090225155792, guid: aeda6089910a26a4faec08d6efc0178c, type: 3}
+  PlayerDamage: {fileID: 5042078548112592184, guid: 5746427aedec44e41b229b913ef5da02, type: 3}
+  TongueAttack: {fileID: 3324598033044694204, guid: 98ed6e098c219a54bba7d1f30d9c015c, type: 3}
+  Dash: {fileID: 5663664415683363455, guid: b7a1783c837b74c42b3182bccfd11c15, type: 3}
+  Jump: {fileID: 1488417140468517498, guid: 3f4342db9bafc734a861cccf11746827, type: 3}
+  Landing: {fileID: 4347498820291287593, guid: 04afab3c37f7ee94ab070f01b90987e4, type: 3}
+  WeaponAttack: {fileID: 909114070893635835, guid: b1081a4277b69ee4b87e5338982c4ba1, type: 3}
+  StepSound: {fileID: 4320818207581936004, guid: ab7bfb372d02e0149932b7e3ba5276a6, type: 3}
+  LadderMove: {fileID: 8148416747830957936, guid: e053fe37b98ca5540b1538d52f3bd332, type: 3}
+  FlyShot: {fileID: 6260551199519758369, guid: 63310609d3adc2745969afc82c5454bd, type: 3}
+--- !u!4 &523157879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523157877}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 25.665281, y: 5.2824526, z: -0.26109996}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &541897225
 GameObject:
   m_ObjectHideFlags: 0

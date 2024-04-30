@@ -3116,7 +3116,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2041284370}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: toggleSounds
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3521,7 +3521,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2041284370}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: toggleMusic
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -9,7 +9,6 @@ public class TongueAttack : MonoBehaviour
     public Animator anim;
     public float Damage;
 
-    public AudioClip attackSound;
     private bool isAttacking = false;
 
     public bool Knockback = false;
