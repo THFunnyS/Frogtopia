@@ -25,7 +25,7 @@ public class PlayerMovements : MonoBehaviour
     Vector3 pos;
     Camera cam;
 
-    public bool canDash = true;
+    public bool canDash = true; //уворот
     private bool isDashing;
     private float dashPower = 24f;
     private float dashTime = 0.2f;
@@ -39,17 +39,17 @@ public class PlayerMovements : MonoBehaviour
 
     public bool isArmed = false;
 
-    public Image healthBar;
+    public Image healthBar;  
     public AudioClip pain;
     public GameObject DeathPanel;
     private bool isInvulnerable = false;
 
-    public bool isArmorSkin = false;
+    public bool isArmorSkin = false; //бронировання кожа
     private float armorResist = 1f;
     private float armorTime = 5f;
     private float armorCooldown = 10f;
 
-    public GameObject PoisonCloud;
+    public GameObject PoisonCloud; //ядовитое облоко
     public bool isPoisonCloud = false;
     public float PoisonCloudDamage = 1;
     public int numOfPoisonCloudHits = 3;
