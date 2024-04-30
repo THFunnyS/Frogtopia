@@ -16,7 +16,7 @@ public class TongueAttack : MonoBehaviour
 
     public bool isPoison = false;
     public float PoisonDamage = 1;
-    public int numOfPoisonHits = 3;
+    public int numOfPosionHits = 3;
 
     public bool isVampirism = false;
     public float percentOfVamp = 0.1f;
