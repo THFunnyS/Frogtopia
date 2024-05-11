@@ -84,6 +84,10 @@ public abstract class Enemy : MonoBehaviour
                 int k = player.GetComponent<PlayerMovements>().numOfPoisonCloudHits;
                 StartCoroutine(GetPoisoned(k, poisonDamaged));
                 break;
+            case "PlayerElectroWave":
+                TakenDamage = player.GetComponent<PlayerMovements>().ElectroWaveDamage;
+                lives -= TakenDamage;
+                break;
         }
     }
 
