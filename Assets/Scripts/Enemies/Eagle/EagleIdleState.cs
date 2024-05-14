@@ -26,7 +26,7 @@ public class EagleIdleState : State
 
         if (Vector2.Distance(_enemy.transform.position, _enemy.Target.position) < _enemy.AgressDistance)
         {
-            _enemy.SM.ChangeState(new EaglePushPointState(_enemy));
+            _enemy.SM.ChangeState(new EagleNotificationState(_enemy));
         }
     }
 }

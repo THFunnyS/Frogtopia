@@ -33,7 +33,7 @@ public class EagleFlyBehindState : State
 
         if ((_enemy.transform.position - _target).magnitude < 0.1f)
         {
-            _enemy.SM.ChangeState(new EagleRestState(_enemy));
+            _enemy.SM.ChangeState(new EagleIdleState(_enemy));
         }
     }
 }
