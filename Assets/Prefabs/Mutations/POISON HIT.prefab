@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4439146076931474493}
   - component: {fileID: 4439146076931474492}
   m_Layer: 0
-  m_Name: POSON HIT
+  m_Name: POISON HIT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 4439146076931474491}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1344687, y: 1.1344687, z: 1.1344687}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4439146077113514865}
@@ -81,8 +81,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.20517515, g: 0.5377358, b: 0.19987537, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 8311b2693fbf6e64e8d438ebf8535591, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -105,8 +105,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  effects: 4
+  effects: 6
   pickUpMutationButton: {fileID: 4439146077113514127}
+  SkillSwaper: {fileID: 0}
 --- !u!222 &4439146076931474492
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -140,8 +141,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4439146077113514127}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.95000005, z: 0}
-  m_LocalScale: {x: 0.06633, y: 0.08654, z: 1}
+  m_LocalPosition: {x: 0, y: 0.73, z: 0}
+  m_LocalScale: {x: 0.0431675, y: 0.056320142, z: 0.65079904}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4439146076931474495}

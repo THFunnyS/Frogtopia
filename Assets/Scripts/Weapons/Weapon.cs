@@ -8,7 +8,7 @@ public class Weapon : MonoBehaviour
 
     public GameObject weaponIcon;
 
-    public int Damage;
+    public float Damage;
 
     void Update()
     {

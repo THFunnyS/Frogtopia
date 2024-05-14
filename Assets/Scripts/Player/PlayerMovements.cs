@@ -25,7 +25,7 @@ public class PlayerMovements : MonoBehaviour
     Vector3 pos;
     Camera cam;
 
-    private bool canDash = true;
+    public bool canDash = true; //уворот
     private bool isDashing;
     private float dashPower = 24f;
     private float dashTime = 0.2f;
@@ -39,15 +39,30 @@ public class PlayerMovements : MonoBehaviour
 
     public bool isArmed = false;
 
-    public Image healthBar;
+    public Image healthBar;  
     public AudioClip pain;
     public GameObject DeathPanel;
     private bool isInvulnerable = false;
 
-    public bool isArmorSkin = false;
+    public float skillTime;
+    public float skillCooldown;
+    public GameObject SkillSwaper;
+
+    private bool isArmorSkin = true; //бронировання кожа
     private float armorResist = 1f;
     private float armorTime = 5f;
     private float armorCooldown = 10f;
+
+    public GameObject PoisonCloud; //ядовитое облоко
+    private bool isPoisonCloud = true;
+    public float PoisonCloudDamage = 1;
+    public int numOfPoisonCloudHits = 3;
+    private float PoisonCloudCooldown = 10f;
+
+    public GameObject ElectroWave; //электро волна
+    private bool canElectroWave = true;
+    public float ElectroWaveDamage = 6f;
+    private float ElectroWaveCooldown = 10f;
 
     public AudioSource moveSound;
     private void Start()
@@ -99,9 +114,12 @@ public class PlayerMovements : MonoBehaviour
             StartCoroutine(Dash());
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && isArmorSkin) //бронированная кожа
+        if (Input.GetKeyDown(KeyCode.F)) //скиллы тела жабы
         {
-            StartCoroutine(ArmorSkin());
+            ActivateSkill(SkillSwaper.GetComponent<SkillSwaper>().CurrentSkill());
+
+            //if (isArmorSkin) StartCoroutine(ArmorSkin()); //бронированная кожа
+            //if (isPoisonCloud) StartCoroutine(PoisonCloudSkill()); //ядовитое облако
         }
 
         if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.35f && isGrounded) //звуки ходьбы
@@ -167,16 +185,54 @@ public class PlayerMovements : MonoBehaviour
         }
     }
 
+    void ActivateSkill(string skillName)
+    {
+        switch (skillName)
+        {
+            case "PoisonCloud":
+                skillTime = 0f;
+                skillCooldown = PoisonCloudCooldown;
+                if (isPoisonCloud) StartCoroutine(PoisonCloudSkill());
+                break;
+            case "ArmorSkin":
+                skillTime = armorTime;
+                skillCooldown = armorCooldown;
+                if (isArmorSkin) StartCoroutine(ArmorSkin());
+                break;
+            case "ElectroWave":
+                skillTime = 0f;
+                skillCooldown = ElectroWaveCooldown;
+                if (canElectroWave) StartCoroutine(ElectroWaveSkill());
+                break;
+        }
+    }
+
     private IEnumerator ArmorSkin() //бронированная кожа
     {
         isArmorSkin = false;
         armorResist = 0.7f;
-        Sprite.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+        Sprite.GetComponent<SpriteRenderer>().color = new Color(130, 60, 30);
         yield return new WaitForSeconds(armorTime);
         armorResist = 1f;
         Sprite.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
         yield return new WaitForSeconds(armorCooldown);
         isArmorSkin = true;
+    }
+
+    private IEnumerator PoisonCloudSkill() //ядовитое облако
+    {
+        Instantiate(PoisonCloud, transform.position, transform.rotation);
+        isPoisonCloud = false;
+        yield return new WaitForSeconds(PoisonCloudCooldown);
+        isPoisonCloud = true;
+    }
+
+    private IEnumerator ElectroWaveSkill() //электро волна
+    {
+        Instantiate(ElectroWave, transform.position, transform.rotation);
+        canElectroWave = false;
+        yield return new WaitForSeconds(ElectroWaveCooldown);
+        canElectroWave = true;
     }
 
     private IEnumerator Dash() //уворот
