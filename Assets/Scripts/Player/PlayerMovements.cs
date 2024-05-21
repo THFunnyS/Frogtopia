@@ -8,7 +8,7 @@ public class PlayerMovements : MonoBehaviour
 {
     public GameObject Sprite;
     public float lives;
-    private int MaxLives;
+    public float MaxLives;
     private float TakenDamage;
 
     private float moveInput;
@@ -89,6 +89,9 @@ public class PlayerMovements : MonoBehaviour
         if (isDashing) return;
 
         healthBar.fillAmount = lives / MaxLives; //высчитывание хп для полоски хп
+        if (lives > MaxLives) lives = MaxLives;
+
+
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, Ground);
         if (isGrounded) canJump = true;
 
