@@ -25,7 +25,7 @@ public class PlayerMovements : MonoBehaviour
     Vector3 pos;
     Camera cam;
 
-    private bool canDash = true;
+    public bool canDash = true;
     private bool isDashing;
     private float dashPower = 24f;
     private float dashTime = 0.2f;
