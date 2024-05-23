@@ -44,7 +44,7 @@ public class AudioManager : SingletonPersistent<AudioManager>
         settings.music = System.Convert.ToBoolean(PlayerPrefs.GetString("music", "true"));
         settings.sounds = System.Convert.ToBoolean(PlayerPrefs.GetString("sounds", "true"));
     }
-    
+
     public void saveSettings()
     {
         PlayerPrefs.SetString("music", settings.music.ToString());

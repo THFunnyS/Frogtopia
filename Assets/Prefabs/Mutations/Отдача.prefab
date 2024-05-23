@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8519722219142135571}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.95000005, z: 0}
-  m_LocalScale: {x: 0.06633, y: 0.08654, z: 1}
+  m_LocalPosition: {x: 0.094, y: 0.7, z: 0}
+  m_LocalScale: {x: 0.03786449, y: 0.041937854, z: 0.5133545}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8519722219937956321}
@@ -112,7 +112,7 @@ RectTransform:
   m_GameObject: {fileID: 8519722219937956317}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2718952, y: 1.2718952, z: 1.2718952}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8519722219142135569}
@@ -165,8 +165,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.20170641, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 41c3cb53cd2bcd941bac0ca69fc0c994, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -189,8 +189,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  effects: 2
+  effects: 4
   pickUpMutationButton: {fileID: 8519722219142135571}
+  SkillSwaper: {fileID: 0}
 --- !u!222 &8519722219937956320
 CanvasRenderer:
   m_ObjectHideFlags: 0
