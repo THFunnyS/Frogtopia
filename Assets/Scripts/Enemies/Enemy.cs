@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +24,8 @@ public abstract class Enemy : MonoBehaviour
     private GameObject player;
     private GameObject currentWeapon;
 
+    public List<Transform> food = new List<Transform>();
+
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -41,6 +44,11 @@ public abstract class Enemy : MonoBehaviour
 
         if (lives <= 0)
         {
+            int randomFood = Random.Range(0, food.Count);
+            if (Random.Range(0f, 1f) <= food[randomFood].GetComponent<Food>().dropPercent)
+            {
+                Instantiate(food[randomFood], transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
         }
     }
