@@ -32,7 +32,7 @@ public abstract class Enemy : MonoBehaviour
         Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         SM = new StateMachine();
         Tongue = GameObject.FindGameObjectWithTag("PlayerTongue");
-        player = GameObject.FindGameObjectWithTag("Player");
+        //player = GameObject.FindGameObjectWithTag("Player");
         currentWeapon = GameObject.Find("Weapon");
         Notification = transform.GetChild(0).gameObject;
     }
@@ -44,11 +44,11 @@ public abstract class Enemy : MonoBehaviour
 
         if (lives <= 0)
         {
-            int randomFood = Random.Range(0, food.Count);
-            if (Random.Range(0f, 1f) <= food[randomFood].GetComponent<Food>().dropPercent)
-            {
-                Instantiate(food[randomFood], transform.position, Quaternion.identity);
-            }
+            //int randomFood = Random.Range(0, food.Count);
+            //if (Random.Range(0f, 1f) <= food[randomFood].GetComponent<Food>().dropPercent)
+            //{
+            //    Instantiate(food[randomFood], transform.position, Quaternion.identity);
+            //}
             Destroy(gameObject);
         }
     }
@@ -83,7 +83,7 @@ public abstract class Enemy : MonoBehaviour
                 if (Tongue.GetComponent<TongueAttack>().isVampirism)
                 {
                     float percentOfVamp = Tongue.GetComponent<TongueAttack>().percentOfVamp;
-                    player.GetComponent<PlayerMovements>().lives += (TakenDamage * percentOfVamp);
+                    //player.GetComponent<PlayerMovements>().lives += (TakenDamage * percentOfVamp);
                 }
                 break;
             case "Weapon": //если оружие
@@ -91,9 +91,9 @@ public abstract class Enemy : MonoBehaviour
                 lives -= TakenDamage;
                 break;
             case "PlayerPoisonGas":
-                float poisonDamaged = player.GetComponent<PlayerMovements>().PoisonCloudDamage;
-                int k = player.GetComponent<PlayerMovements>().numOfPoisonCloudHits;
-                StartCoroutine(GetPoisoned(k, poisonDamaged));
+                //float poisonDamaged = player.GetComponent<PlayerMovements>().PoisonCloudDamage;
+                //int k = player.GetComponent<PlayerMovements>().numOfPoisonCloudHits;
+                //StartCoroutine(GetPoisoned(k, poisonDamaged));
                 break;
         }
     }
