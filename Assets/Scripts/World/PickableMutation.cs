@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public enum Effects
 {
-    /*BODY  */  DJUMP, ArmorSkin,
+    /*BODY  */  DJUMP, ArmorSkin, PoisonCloud, ElectroWave, ProtectiveSlime, SharpTongue, ThickSkin,
     /*TONGUE*/ Knockback, PoisonShot , PoisonHit, Vampirism, PlayerKnockback
 }
 
@@ -27,12 +27,15 @@ public class PickableMutation : MonoBehaviour
     private GameObject Tongue;
     private GameObject player;
 
+    public GameObject SkillSwaper;
+
     void Start()
     {  
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         StartPos = transform.position;
         Tongue = GameObject.FindGameObjectWithTag("PlayerTongue");
         player = GameObject.FindGameObjectWithTag("Player");
+        SkillSwaper = GameObject.Find("SkillPanel");
     }
 
     void Update()
@@ -76,11 +79,27 @@ public class PickableMutation : MonoBehaviour
                     Tongue.GetComponent<TongueAttack>().isVampirism = true;
                     break;
                 case Effects.ArmorSkin:
-                    player.GetComponent<PlayerMovements>().isArmorSkin = true;
+                    SkillSwaper.GetComponent<SkillSwaper>().AddToList("ArmorSkin");
                     break;
                 case Effects.PlayerKnockback:
                     Tongue.GetComponent<TongueAttack>().PlayerKnockback = true;
                     break;
+                case Effects.PoisonCloud:
+                    SkillSwaper.GetComponent<SkillSwaper>().AddToList("PoisonCloud");
+                    break;
+                case Effects.ElectroWave:
+                    SkillSwaper.GetComponent<SkillSwaper>().AddToList("ElectroWave");
+                    break;
+                case Effects.ProtectiveSlime:
+                    player.GetComponent<PlayerMovements>().IncArmor();
+                    break;
+                case Effects.SharpTongue:
+                    Tongue.GetComponent<TongueAttack>().Damage += 0.3f;
+                    break;
+                case Effects.ThickSkin:
+                    player.GetComponent<PlayerMovements>().IncHealth();
+                    break;
+                
             }
             Destroy(gameObject);
         }

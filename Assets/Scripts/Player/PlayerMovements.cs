@@ -42,11 +42,26 @@ public class PlayerMovements : MonoBehaviour
     public Image healthBar;
     public GameObject DeathPanel;
     private bool isInvulnerable = false;
+    
+    public float skillTime;
+    public float skillCooldown;
+    public GameObject SkillSwaper;
 
-    public bool isArmorSkin = false;
+    public bool isArmorSkin = true;
     private float armorResist = 1f;
     private float armorTime = 5f;
     private float armorCooldown = 10f;
+
+    public GameObject PoisonCloud; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    private bool isPoisonCloud = true;
+    public float PoisonCloudDamage = 1;
+    public int numOfPoisonCloudHits = 3;
+    private float PoisonCloudCooldown = 10f;
+
+    public GameObject ElectroWave; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    private bool canElectroWave = true;
+    public float ElectroWaveDamage = 6f;
+    private float ElectroWaveCooldown = 10f;
 
     private GameObject stepSound;
     private bool isStepSound = false;
@@ -75,7 +90,7 @@ public class PlayerMovements : MonoBehaviour
 
         if (isDashing) return;
 
-        healthBar.fillAmount = lives / MaxLives; //высчитывание хп для полоски хп
+        healthBar.fillAmount = lives / MaxLives; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, Ground);
         if (isGrounded) canJump = true;
 
@@ -87,36 +102,39 @@ public class PlayerMovements : MonoBehaviour
             isFallSound = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.S)) //спуск с платформы
+        if (Input.GetKeyDown(KeyCode.S)) //пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         {
             Physics2D.IgnoreLayerCollision(3, 7, true);
             Invoke("IgnoreLayerOff", 0.5f);
         }
 
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space)) //прыжок
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space)) //пїЅпїЅпїЅпїЅпїЅпїЅ
         {
             AudioManager.PlaySound(AudioManager.inst.Jump);
             rb.velocity = Vector2.up * jumpForce;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !isGrounded && canJump && canDoubleJump) //двойной прыжок
+        if (Input.GetKeyDown(KeyCode.Space) && !isGrounded && canJump && canDoubleJump) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         {
             AudioManager.PlaySound(AudioManager.inst.Jump);
             rb.velocity = Vector2.up * jumpForce;
             canJump = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash) //уворот
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash) //пїЅпїЅпїЅпїЅпїЅпїЅ
         {
             StartCoroutine(Dash());
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && isArmorSkin) //бронированная кожа
+        if (Input.GetKeyDown(KeyCode.F)) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         {
-            StartCoroutine(ArmorSkin());
+            ActivateSkill(SkillSwaper.GetComponent<SkillSwaper>().CurrentSkill());
+
+            //if (isArmorSkin) StartCoroutine(ArmorSkin()); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+            //if (isPoisonCloud) StartCoroutine(PoisonCloudSkill()); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         }
 
-        if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.35f && isGrounded) //звуки ходьбы
+        if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.35f && isGrounded) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         {
             if (!isStepSound) { 
                 stepSound = AudioManager.PlaySoundLoop(AudioManager.inst.StepSound);
@@ -129,7 +147,7 @@ public class PlayerMovements : MonoBehaviour
                 isStepSound = false;
         }
 
-        if (lives <= 0) Death(); //смерть
+        if (lives <= 0) Death(); //пїЅпїЅпїЅпїЅпїЅпїЅ
     }
 
     public void OnTriggerEnter2D(Collider2D col)
@@ -160,7 +178,7 @@ public class PlayerMovements : MonoBehaviour
         }
     }
 
-    void Flip() //поворот моделки игрока
+    void Flip() //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     {
         if (Input.mousePosition.x < pos.x && isFacingRight)
         {
@@ -181,19 +199,64 @@ public class PlayerMovements : MonoBehaviour
         }
     }
 
-    private IEnumerator ArmorSkin() //бронированная кожа
+        void ActivateSkill(string skillName)
+    {
+        switch (skillName)
+        {
+            case "PoisonCloud":
+                skillTime = 0f;
+                skillCooldown = PoisonCloudCooldown;
+                if (isPoisonCloud) StartCoroutine(PoisonCloudSkill());
+                break;
+            case "ArmorSkin":
+                skillTime = armorTime;
+                skillCooldown = armorCooldown;
+                if (isArmorSkin) StartCoroutine(ArmorSkin());
+                break;
+            case "ElectroWave":
+                skillTime = 0f;
+                skillCooldown = ElectroWaveCooldown;
+                if (canElectroWave) StartCoroutine(ElectroWaveSkill());
+                break;
+        }
+    }
+
+    public void IncArmor(){
+        armorResist-=0.3f;
+    }
+
+        public void IncHealth(){
+        MaxLives += 5;
+    }
+    private IEnumerator ArmorSkin() //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     {
         isArmorSkin = false;
-        armorResist = 0.7f;
-        Sprite.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+        armorResist -= 0.3f;
+        Sprite.GetComponent<SpriteRenderer>().color = new Color(130, 60, 30);
         yield return new WaitForSeconds(armorTime);
-        armorResist = 1f;
+        armorResist += 0.3f;
         Sprite.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
         yield return new WaitForSeconds(armorCooldown);
         isArmorSkin = true;
     }
 
-    private IEnumerator Dash() //уворот
+    private IEnumerator PoisonCloudSkill() //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    {
+        Instantiate(PoisonCloud, transform.position, transform.rotation);
+        isPoisonCloud = false;
+        yield return new WaitForSeconds(PoisonCloudCooldown);
+        isPoisonCloud = true;
+    }
+
+    private IEnumerator ElectroWaveSkill() //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    {
+        Instantiate(ElectroWave, transform.position, transform.rotation);
+        canElectroWave = false;
+        yield return new WaitForSeconds(ElectroWaveCooldown);
+        canElectroWave = true;
+    }
+
+    private IEnumerator Dash() //пїЅпїЅпїЅпїЅпїЅпїЅ
     {
         canDash = false;
         isDashing = true;
@@ -210,7 +273,7 @@ public class PlayerMovements : MonoBehaviour
         canDash = true;
     }
 
-    private IEnumerator PushedAway(Transform pushFrom, float pushPower) //откидывание при получении урона
+    private IEnumerator PushedAway(Transform pushFrom, float pushPower) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     {
         float time = 0;
         while (0.1 > time)
@@ -225,7 +288,7 @@ public class PlayerMovements : MonoBehaviour
         yield return 0;
     }
 
-    private IEnumerator SetInvulnerability(float time) //неуязвимость
+    private IEnumerator SetInvulnerability(float time) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
         isInvulnerable = true;
         yield return new WaitForSeconds(time);
@@ -233,12 +296,12 @@ public class PlayerMovements : MonoBehaviour
         anim.SetTrigger("DamageGone");
     }
 
-    void IgnoreLayerOff() //игнор слоёв для спуска с платформы
+    void IgnoreLayerOff() //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
         Physics2D.IgnoreLayerCollision(3, 7, false);
     }
 
-    public void Death() //смерть
+    public void Death() //пїЅпїЅпїЅпїЅпїЅпїЅ
     {
         DeathPanel.SetActive(true);
         speed = 0f;
