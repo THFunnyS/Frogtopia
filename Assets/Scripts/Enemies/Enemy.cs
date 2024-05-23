@@ -17,6 +17,7 @@ public abstract class Enemy : MonoBehaviour
     public StateMachine SM { get; set; }
     public GameObject Sprite;
     private Rigidbody2D rb;
+    public GameObject Notification;
 
     private GameObject Tongue;
     private GameObject player;
@@ -32,6 +33,7 @@ public abstract class Enemy : MonoBehaviour
         Tongue = GameObject.FindGameObjectWithTag("PlayerTongue");
         player = GameObject.FindGameObjectWithTag("Player");
         currentWeapon = GameObject.Find("Weapon");
+        Notification = transform.GetChild(0).gameObject;
     }
 
     public virtual void Update()
