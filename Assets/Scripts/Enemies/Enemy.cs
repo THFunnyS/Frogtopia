@@ -12,6 +12,7 @@ public abstract class Enemy : MonoBehaviour
     public float AgressDistance = 10f;
     public float Speed = 5f;
     public float RestTime = 2f;
+    public float NotifTime = 1f;
 
     public Transform Target { get; set; }
     public StateMachine SM { get; set; }

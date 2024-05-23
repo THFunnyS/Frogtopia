@@ -19,7 +19,6 @@ public class CaterpillarIdleUpState : State
     public override void Exit()
     {
         base.Exit();
-        _enemy.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
     }
 
     public override void Update()
@@ -28,7 +27,7 @@ public class CaterpillarIdleUpState : State
 
         if (_enemy.transform.position.x - _enemy.Target.position.x < _enemy.AgressDistance)
         {
-            _enemy.SM.ChangeState(new CaterpillarPushState(_enemy));
+            _enemy.SM.ChangeState(new CaterpillarNotificationState(_enemy));
         }
     }
 }

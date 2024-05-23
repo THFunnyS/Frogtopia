@@ -28,18 +28,23 @@ public class FlyAttackState : State
     {
         base.Update();
 
+        if (Time.time - startTime > 3f - _enemy.NotifTime)
+            _enemy.Notification.SetActive(true);
+
         if (Time.time - startTime > 3f)
         {
-            if (Vector2.Distance(_enemy.transform.position, _enemy.Target.position) < 1.7f * _enemy.AgressDistance)
+            if (Vector2.Distance(_enemy.transform.position, _enemy.Target.position) < 1.5f * _enemy.AgressDistance)
             {
                 GameObject bullet = Object.Instantiate(_bullet, _enemy.transform);
                 Object.Destroy(bullet, 5f);
             }
+            _enemy.Notification.SetActive(false);
             startTime = Time.time;
         }
 
-        if (Vector2.Distance(_enemy.transform.position, _enemy.Target.position) > 1.7f * _enemy.AgressDistance)
+        if (Vector2.Distance(_enemy.transform.position, _enemy.Target.position) > 1.5f * _enemy.AgressDistance)
         {
+            _enemy.Notification.SetActive(false);
             _enemy.SM.ChangeState(new FlyIdleState(_enemy, _bullet));
         }
     }
