@@ -6,7 +6,7 @@ public class CaterpillarIdleState : State
     private Enemy _enemy;
 
     public CaterpillarIdleState(Enemy enemy)
-    { 
+    {
         _enemy = enemy;
     }
 
@@ -26,7 +26,7 @@ public class CaterpillarIdleState : State
 
         if (Vector2.Distance(_enemy.transform.position, _enemy.Target.position) < _enemy.AgressDistance)
         {
-            _enemy.SM.ChangeState(new CaterpillarPushState(_enemy));
+            _enemy.SM.ChangeState(new CaterpillarNotificationState(_enemy));
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,15 +12,19 @@ public abstract class Enemy : MonoBehaviour
     public float AgressDistance = 10f;
     public float Speed = 5f;
     public float RestTime = 2f;
+    public float NotifTime = 1f;
 
     public Transform Target { get; set; }
     public StateMachine SM { get; set; }
     public GameObject Sprite;
     private Rigidbody2D rb;
+    public GameObject Notification;
 
     private GameObject Tongue;
     private GameObject player;
     private GameObject currentWeapon;
+
+    public List<Transform> food = new List<Transform>();
 
     public virtual void Start()
     {
@@ -29,6 +34,7 @@ public abstract class Enemy : MonoBehaviour
         Tongue = GameObject.FindGameObjectWithTag("PlayerTongue");
         player = GameObject.FindGameObjectWithTag("Player");
         currentWeapon = GameObject.Find("Weapon");
+        Notification = transform.GetChild(0).gameObject;
     }
 
     public virtual void Update()
@@ -38,7 +44,12 @@ public abstract class Enemy : MonoBehaviour
 
         if (lives <= 0)
         {
-            Destroy(gameObject);
+            int randomFood = Random.Range(0, food.Count);
+            if (Random.Range(0f, 1f) <= food[randomFood].GetComponent<Food>().dropPercent)
+            {
+                Instantiate(food[randomFood], transform.position, Quaternion.identity);
+            }     
+            Destroy(gameObject);          
         }
     }
 

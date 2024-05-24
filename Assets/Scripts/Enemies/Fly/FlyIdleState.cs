@@ -28,7 +28,7 @@ public class FlyIdleState : State
 
         if (Vector2.Distance(_enemy.transform.position, _enemy.Target.position) < _enemy.AgressDistance)
         {
-            _enemy.SM.ChangeState(new FlyPushState(_enemy, _bullet));
+            _enemy.SM.ChangeState(new FlyNotificationState(_enemy, _bullet));
         }
     }
 }
