@@ -1410,6 +1410,11 @@ Transform:
   m_Father: {fileID: 1936654483}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &790823436 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7524225739549865338, guid: e55922bae4b126740a5d71d4a77b80a5, type: 3}
+  m_PrefabInstance: {fileID: 7524225738160107377}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &812613308
 GameObject:
   m_ObjectHideFlags: 0
@@ -2250,6 +2255,11 @@ Transform:
   m_Father: {fileID: 1936654483}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1252062560 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7524225739023424453, guid: e55922bae4b126740a5d71d4a77b80a5, type: 3}
+  m_PrefabInstance: {fileID: 7524225738160107377}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1338206243 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1338206243, guid: e55922bae4b126740a5d71d4a77b80a5, type: 3}
@@ -2944,6 +2954,7 @@ GameObject:
   - component: {fileID: 1810719877}
   - component: {fileID: 1810719876}
   - component: {fileID: 1810719875}
+  - component: {fileID: 1810719878}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2976,7 +2987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PausePanel: {fileID: 53504225}
-  SettingsPanel: {fileID: 0}
+  SettingsPanel: {fileID: 790823436}
 --- !u!4 &1810719877
 Transform:
   m_ObjectHideFlags: 0
@@ -2992,6 +3003,21 @@ Transform:
   m_Father: {fileID: 1078942477}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1810719878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810719874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c69060176dc6546b14d91fd9f3c010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  nameText: {fileID: 7524225738160107379}
+  dialogueText: {fileID: 7524225738160107378}
 --- !u!4 &1845686525 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5628743028583319351, guid: c0821de766bd4484291c4f017809caa4, type: 3}
@@ -5496,8 +5522,42 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1810719876}
+    - target: {fileID: 7856678441864498666, guid: e55922bae4b126740a5d71d4a77b80a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1810719878}
+    - target: {fileID: 7856678441864498666, guid: e55922bae4b126740a5d71d4a77b80a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DisplayNextSentence
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856678441864498666, guid: e55922bae4b126740a5d71d4a77b80a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1252062560}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e55922bae4b126740a5d71d4a77b80a5, type: 3}
+--- !u!114 &7524225738160107378 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7524225739681578068, guid: e55922bae4b126740a5d71d4a77b80a5, type: 3}
+  m_PrefabInstance: {fileID: 7524225738160107377}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7524225738160107379 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7524225739473718150, guid: e55922bae4b126740a5d71d4a77b80a5, type: 3}
+  m_PrefabInstance: {fileID: 7524225738160107377}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8519722220425012610
 PrefabInstance:
   m_ObjectHideFlags: 0

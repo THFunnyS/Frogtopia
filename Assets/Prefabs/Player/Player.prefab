@@ -1015,6 +1015,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sprite: {fileID: 5628743028055063458}
   lives: 15
+  MaxLives: 0
   speed: 9
   jumpForce: 10
   canDoubleJump: 0
@@ -1035,6 +1036,8 @@ MonoBehaviour:
   PoisonCloud: {fileID: 1420765877489313484, guid: 0f94fa6873046d0458bc3b096e5d43e8, type: 3}
   PoisonCloudDamage: 1
   numOfPoisonCloudHits: 3
+  ElectroWave: {fileID: 6986588681103028372, guid: 026d535ed50997a42807a3e0b412160f, type: 3}
+  ElectroWaveDamage: 6
   moveSound: {fileID: 0}
 --- !u!50 &5910781539057149677
 Rigidbody2D:
