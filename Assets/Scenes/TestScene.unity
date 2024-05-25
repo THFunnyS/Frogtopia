@@ -4764,7 +4764,7 @@ MonoBehaviour:
   Player: {fileID: 608672555}
   effects: 3
   pickUpMutationButton: {fileID: 893915531}
-  SkillSwaper: {fileID: 1067587270}
+  SkillSwaper: {fileID: 1338206243}
 --- !u!1001 &5628743028612005815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5248,7 +5248,7 @@ MonoBehaviour:
   Player: {fileID: 608672555}
   effects: 1
   pickUpMutationButton: {fileID: 882776622}
-  SkillSwaper: {fileID: 1067587270}
+  SkillSwaper: {fileID: 1338206243}
 --- !u!224 &6092002734809545896 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 325512938158792411, guid: 6a200bd3e7de332458aeed197bda453b, type: 3}
@@ -5269,7 +5269,7 @@ MonoBehaviour:
   Player: {fileID: 608672555}
   effects: 2
   pickUpMutationButton: {fileID: 1780586096}
-  SkillSwaper: {fileID: 1067587270}
+  SkillSwaper: {fileID: 1338206243}
 --- !u!1001 &7194477848123568556
 PrefabInstance:
   m_ObjectHideFlags: 0
