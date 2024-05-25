@@ -13,7 +13,7 @@ public class TongueShot : MonoBehaviour
     private float TimeFire;
 
     public bool isPoison = false;
-   // public bool isBurst = true;
+    //public bool isBurst = true;
     void Start()
     {
         TimeFire = StartTimeFire;
@@ -28,16 +28,16 @@ public class TongueShot : MonoBehaviour
             if (TimeFire <= 0)
             {
                 Instantiate(Bullet, BulletTransform.position, transform.rotation);    
-                //if (isBurst)
-                //{
-                //    transform.eulerAngles = rotation;
-                //     Debug.Log("1f"); Debug.Log(transform.rotation);
-                //    Instantiate(Bullet, BulletTransform.position, transform.rotation /*Quaternion.Euler(0,0,rot.z)*/);
-                //    transform.eulerAngles = -2*rotation;
-                //    Debug.Log("2f"); Debug.Log(transform.rotation);
-                //    Instantiate(Bullet, BulletTransform.position, transform.rotation /*Quaternion.Euler(0, 0, rot.z)*/);
-                //    transform.rotation = LocalRot;
-                //}
+                // if (isBurst)
+                // {
+                //     transform.eulerAngles = rotation;
+                //      Debug.Log("1f"); Debug.Log(transform.rotation);
+                //     Instantiate(Bullet, BulletTransform.position, transform.rotation /*Quaternion.Euler(0,0,rot.z)*/);
+                //     transform.eulerAngles = -2*rotation;
+                //     Debug.Log("2f"); Debug.Log(transform.rotation);
+                //     Instantiate(Bullet, BulletTransform.position, transform.rotation /*Quaternion.Euler(0, 0, rot.z)*/);
+                //     transform.rotation = LocalRot;
+                // }
                 TimeFire = StartTimeFire;
             }
             else

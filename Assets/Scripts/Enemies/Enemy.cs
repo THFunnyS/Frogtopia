@@ -77,7 +77,7 @@ public abstract class Enemy : MonoBehaviour
                 if (Tongue.GetComponent<TongueAttack>().isPoison)
                 {
                     float PoisonDamaged = Tongue.GetComponent<TongueAttack>().PoisonDamage;
-                    int n = Tongue.GetComponent<TongueAttack>().numOfPoisonHits;
+                    int n = Tongue.GetComponent<TongueAttack>().numOfPosionHits;
                     StartCoroutine(GetPoisoned(n, PoisonDamaged));
                 }
                 if (Tongue.GetComponent<TongueAttack>().isVampirism)
@@ -88,15 +88,6 @@ public abstract class Enemy : MonoBehaviour
                 break;
             case "Weapon": //если оружие
                 TakenDamage = currentWeapon.transform.GetChild(0).gameObject.GetComponent<Weapon>().Damage;
-                lives -= TakenDamage;
-                break;
-            case "PlayerPoisonGas":
-                float poisonDamaged = player.GetComponent<PlayerMovements>().PoisonCloudDamage;
-                int k = player.GetComponent<PlayerMovements>().numOfPoisonCloudHits;
-                StartCoroutine(GetPoisoned(k, poisonDamaged));
-                break;
-            case "PlayerElectroWave":
-                TakenDamage = player.GetComponent<PlayerMovements>().ElectroWaveDamage;
                 lives -= TakenDamage;
                 break;
         }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public enum Effects
 {
-    /*BODY  */  DJUMP, ArmorSkin, PoisonCloud, ElectroWave,
+    /*BODY  */  DJUMP, ArmorSkin, PoisonCloud, ElectroWave, ProtectiveSlime, SharpTongue, ThickSkin,
     /*TONGUE*/ Knockback, PoisonShot , PoisonHit, Vampirism, PlayerKnockback
 }
 
@@ -90,6 +90,16 @@ public class PickableMutation : MonoBehaviour
                 case Effects.ElectroWave:
                     SkillSwaper.GetComponent<SkillSwaper>().AddToList("ElectroWave");
                     break;
+                case Effects.ProtectiveSlime:
+                    player.GetComponent<PlayerMovements>().IncArmor();
+                    break;
+                case Effects.SharpTongue:
+                    Tongue.GetComponent<TongueAttack>().Damage += 0.3f;
+                    break;
+                case Effects.ThickSkin:
+                    player.GetComponent<PlayerMovements>().IncHealth();
+                    break;
+                
             }
             Destroy(gameObject);
         }
