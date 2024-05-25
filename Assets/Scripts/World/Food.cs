@@ -15,7 +15,7 @@ public class Food : MonoBehaviour
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
-        healthRegen = Player.GetComponent<PlayerMovements>().MaxLives * healthRegenPercent;
+        healthRegen = Player.GetComponent<PlayerMovements>().GetMaxLives() * healthRegenPercent;
         Physics2D.IgnoreCollision(Player.GetComponent<CapsuleCollider2D>(), GetComponent<BoxCollider2D>(), true);
     }
 

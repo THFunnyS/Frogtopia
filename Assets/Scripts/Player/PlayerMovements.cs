@@ -228,6 +228,9 @@ public class PlayerMovements : MonoBehaviour
         public void IncHealth(){
         MaxLives += 5;
     }
+    public int GetMaxLives(){
+        return MaxLives;
+    }
     private IEnumerator ArmorSkin() //������������� ����
     {
         isArmorSkin = false;
