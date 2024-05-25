@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6986588681103028374}
   - component: {fileID: 6986588681103028373}
   - component: {fileID: 263580639391797311}
-  - component: {fileID: 3699985170827924711}
+  - component: {fileID: 4963763189652758704}
   m_Layer: 0
   m_Name: ElectroWave
   m_TagString: PlayerElectroWave
@@ -124,7 +124,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.16
---- !u!114 &3699985170827924711
+--- !u!114 &4963763189652758704
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,6 +133,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6986588681103028372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b11a4d42d9e1f24d950042e64c1230e, type: 3}
+  m_Script: {fileID: 11500000, guid: 54961cbe8f5bd6d48b706a8e20ce6863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
