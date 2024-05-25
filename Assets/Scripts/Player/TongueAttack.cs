@@ -9,14 +9,13 @@ public class TongueAttack : MonoBehaviour
     public Animator anim;
     public float Damage;
 
-    public AudioClip attackSound;
     private bool isAttacking = false;
 
     public bool Knockback = false;
 
     public bool isPoison = false;
     public float PoisonDamage = 1;
-    public int numOfPoisonHits = 3;
+    public int numOfPosionHits = 3;
 
     public bool isVampirism = false;
     public float percentOfVamp = 0.1f;
@@ -44,11 +43,10 @@ public class TongueAttack : MonoBehaviour
     IEnumerator PlayAttackSound()
     {
         isAttacking = true;
-        AudioSource.PlayClipAtPoint(attackSound, transform.position);
-        yield return new WaitForSeconds(attackSound.length);
+        AudioManager.PlaySound(AudioManager.inst.TongueAttack);
+        yield return new WaitForSeconds(0.5f);
         isAttacking = false;
-    }
-
+    } 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if ((col.tag == "Enemy" || col.gameObject.layer == 6) && PlayerKnockback)
@@ -57,7 +55,7 @@ public class TongueAttack : MonoBehaviour
         }
     }
 
-    private IEnumerator PushedAway(Transform pushFrom, float pushPower) //откидывание от поверхностей и врагов
+    private IEnumerator PushedAway(Transform pushFrom, float pushPower) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     {
         float time = 0;
         while (0.1 > time)
