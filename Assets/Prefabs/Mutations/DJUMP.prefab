@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3269679815916308381}
   - component: {fileID: 3269679815916308382}
-  - component: {fileID: 3269679815916308383}
+  - component: {fileID: -2672866026967920029}
   - component: {fileID: 3269679815916308352}
   m_Layer: 0
   m_Name: DJUMP
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3269679815916308383
+--- !u!114 &-2672866026967920029
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3269679815916308353}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 283342807457d23459a45724d26c95ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d253e07735463647a98ce1b1eaf9229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}

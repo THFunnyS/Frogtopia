@@ -8,7 +8,7 @@ public class PlayerMovements : MonoBehaviour
 {
     public GameObject Sprite;
     public float lives;
-    private int MaxLives;
+    private float MaxLives;
     private float TakenDamage;
 
     private float moveInput;
@@ -92,30 +92,48 @@ public class PlayerMovements : MonoBehaviour
 
         healthBar.fillAmount = lives / MaxLives; //������������ �� ��� ������� ��
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, Ground);
-        if (isGrounded) canJump = true;
+        if (isGrounded)
+        {
+            canJump = true;
+            anim.SetBool("Falling", false);
+        }
 
-        if (!isGrounded) isFallSound = false;
+        if (!isGrounded)
+        {
+            isFallSound = false;
+            anim.SetBool("Falling", true);
+        }
 
         if (isGrounded && !isFallSound)
         {
+            anim.SetBool("Jumping", false);
+            anim.SetBool("Falling", false);
             AudioManager.PlaySound(AudioManager.inst.Landing);
             isFallSound = true;
         }
 
+        //if (Input.GetKey(KeyCode.Mouse0))
+        //{
+        //    anim.SetTrigger("Attack");
+        //}
+
         if (Input.GetKeyDown(KeyCode.S)) //����� � ���������
         {
+            anim.SetBool("Falling", true);
             Physics2D.IgnoreLayerCollision(3, 7, true);
             Invoke("IgnoreLayerOff", 0.5f);
         }
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Space)) //������
         {
+            anim.SetBool("Jumping", true);
             AudioManager.PlaySound(AudioManager.inst.Jump);
             rb.velocity = Vector2.up * jumpForce;
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && !isGrounded && canJump && canDoubleJump) //������� ������
         {
+            anim.SetBool("Jumping", true);
             AudioManager.PlaySound(AudioManager.inst.Jump);
             rb.velocity = Vector2.up * jumpForce;
             canJump = false;
@@ -129,22 +147,21 @@ public class PlayerMovements : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F)) //������ ���� ����
         {
             ActivateSkill(SkillSwaper.GetComponent<SkillSwaper>().CurrentSkill());
-
-            //if (isArmorSkin) StartCoroutine(ArmorSkin()); //������������� ����
-            //if (isPoisonCloud) StartCoroutine(PoisonCloudSkill()); //�������� ������
         }
 
+        anim.SetFloat("move", Mathf.Abs(Input.GetAxis("Horizontal")));
         if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.35f && isGrounded) //����� ������
         {
-            if (!isStepSound) { 
+            if (!isStepSound)
+            {
                 stepSound = AudioManager.PlaySoundLoop(AudioManager.inst.StepSound);
                 isStepSound = true;
             }
         }
         else
         {
-                Destroy(stepSound);
-                isStepSound = false;
+            Destroy(stepSound);
+            isStepSound = false;
         }
 
         if (lives <= 0) Death(); //������
@@ -199,7 +216,7 @@ public class PlayerMovements : MonoBehaviour
         }
     }
 
-        void ActivateSkill(string skillName)
+    void ActivateSkill(string skillName)
     {
         switch (skillName)
         {
@@ -225,10 +242,11 @@ public class PlayerMovements : MonoBehaviour
         armorResist-=0.3f;
     }
 
-        public void IncHealth(){
+    public void IncHealth()
+    {
         MaxLives += 5;
     }
-    public int GetMaxLives(){
+    public float GetMaxLives(){
         return MaxLives;
     }
     private IEnumerator ArmorSkin() //������������� ����
@@ -261,6 +279,7 @@ public class PlayerMovements : MonoBehaviour
 
     private IEnumerator Dash() //������
     {
+        anim.SetBool("Dashing", true);
         canDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;
@@ -274,6 +293,7 @@ public class PlayerMovements : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+        anim.SetBool("Dashing", false);
     }
 
     private IEnumerator PushedAway(Transform pushFrom, float pushPower) //����������� ��� ��������� �����
