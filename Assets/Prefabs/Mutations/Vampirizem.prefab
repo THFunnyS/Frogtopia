@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2308368819447404222}
   - component: {fileID: 2308368819447404220}
-  - component: {fileID: 2308368819447404221}
   - component: {fileID: 2308368819447404223}
+  - component: {fileID: 7479600481819994115}
   m_Layer: 0
   m_Name: Vampirizem
   m_TagString: Untagged
@@ -92,22 +92,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2308368819447404221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2308368819447404162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 283342807457d23459a45724d26c95ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  effects: 7
-  pickUpMutationButton: {fileID: 2308368820246390860}
-  SkillSwaper: {fileID: 0}
 --- !u!222 &2308368819447404223
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -116,6 +100,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2308368819447404162}
   m_CullTransparentMesh: 1
+--- !u!114 &7479600481819994115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2308368819447404162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d253e07735463647a98ce1b1eaf9229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  effects: 10
+  pickUpMutationButton: {fileID: 2308368820246390860}
+  SkillSwaper: {fileID: 0}
 --- !u!1 &2308368820246390860
 GameObject:
   m_ObjectHideFlags: 0

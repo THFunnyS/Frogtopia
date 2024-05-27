@@ -4776,11 +4776,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4001714425654194780, guid: c0821de766bd4484291c4f017809caa4, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4001714425654194780, guid: c0821de766bd4484291c4f017809caa4, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4001714425654194780, guid: c0821de766bd4484291c4f017809caa4, type: 3}
       propertyPath: m_Color.r

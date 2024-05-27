@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4439146076931474495}
   - component: {fileID: 4439146076931474494}
-  - component: {fileID: 4439146076931474493}
   - component: {fileID: 4439146076931474492}
+  - component: {fileID: 5073390800888349630}
   m_Layer: 0
   m_Name: POISON HIT
   m_TagString: Untagged
@@ -92,22 +92,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4439146076931474493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4439146076931474491}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 283342807457d23459a45724d26c95ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  effects: 6
-  pickUpMutationButton: {fileID: 4439146077113514127}
-  SkillSwaper: {fileID: 0}
 --- !u!222 &4439146076931474492
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -116,6 +100,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4439146076931474491}
   m_CullTransparentMesh: 1
+--- !u!114 &5073390800888349630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4439146076931474491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d253e07735463647a98ce1b1eaf9229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  effects: 9
+  pickUpMutationButton: {fileID: 4439146077113514127}
+  SkillSwaper: {fileID: 0}
 --- !u!1 &4439146077113514127
 GameObject:
   m_ObjectHideFlags: 0

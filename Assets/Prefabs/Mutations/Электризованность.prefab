@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5691125641679544004}
   - component: {fileID: 5691125641679544006}
-  - component: {fileID: 5691125641679544007}
   - component: {fileID: 5691125641679544005}
+  - component: {fileID: 129255789506641624}
   m_Layer: 0
   m_Name: "\u042D\u043B\u0435\u043A\u0442\u0440\u0438\u0437\u043E\u0432\u0430\u043D\u043D\u043E\u0441\u0442\u044C"
   m_TagString: Untagged
@@ -92,22 +92,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5691125641679544007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5691125641679544056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 283342807457d23459a45724d26c95ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  effects: 3
-  pickUpMutationButton: {fileID: 5691125642493599798}
-  SkillSwaper: {fileID: 0}
 --- !u!222 &5691125641679544005
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -116,6 +100,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5691125641679544056}
   m_CullTransparentMesh: 1
+--- !u!114 &129255789506641624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5691125641679544056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d253e07735463647a98ce1b1eaf9229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  effects: 3
+  pickUpMutationButton: {fileID: 5691125642493599798}
+  Canvas: {fileID: 0}
 --- !u!1 &5691125642493599798
 GameObject:
   m_ObjectHideFlags: 0
