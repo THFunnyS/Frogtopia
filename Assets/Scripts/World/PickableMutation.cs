@@ -27,7 +27,8 @@ public class PickableMutation : MonoBehaviour
     private GameObject Tongue;
     private GameObject player;
 
-    public GameObject SkillSwaper;
+    public GameObject Canvas;
+    GameObject SkillSwaper;
 
     void Start()
     {  
@@ -35,7 +36,7 @@ public class PickableMutation : MonoBehaviour
         StartPos = transform.position;
         Tongue = GameObject.FindGameObjectWithTag("PlayerTongue");
         player = GameObject.FindGameObjectWithTag("Player");
-        SkillSwaper = GameObject.Find("SkillPanel");
+        SkillSwaper = Canvas.transform.GetChild(8).gameObject;
     }
 
     void Update()
