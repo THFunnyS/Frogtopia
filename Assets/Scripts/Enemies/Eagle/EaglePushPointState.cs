@@ -17,6 +17,7 @@ public class EaglePushPointState : State
     {
         base.Enter();
         AudioManager.PlaySound(AudioManager.inst.EagleAttack);
+        _enemy.animator.SetBool("FlyingDown", true);
     }
 
     public override void Exit()
@@ -32,6 +33,7 @@ public class EaglePushPointState : State
 
         if ((_enemy.transform.position - _target).magnitude < 0.1f)
         {
+            _enemy.animator.SetBool("FlyingDown", false);
             _enemy.SM.ChangeState(new EagleFlyBehindState(_enemy, _direction));
         }
     }

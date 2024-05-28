@@ -26,6 +26,8 @@ public abstract class Enemy : MonoBehaviour
 
     public List<Transform> food = new List<Transform>();
 
+    public Animator animator;
+
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -60,6 +62,7 @@ public abstract class Enemy : MonoBehaviour
             case "PlayerBullet": //если снаряд игрока
                 TakenDamage = GameObject.FindGameObjectWithTag("PlayerBullet").GetComponent<PlayerBullet>().Damage;
                 lives -= TakenDamage;
+                animator.SetTrigger("Damaged");
                 if (GameObject.FindGameObjectWithTag("PlayerBullet").GetComponent<PlayerBullet>().isPoison)
                 {
                     float PoisonDamaged = GameObject.FindGameObjectWithTag("PlayerBullet").GetComponent<PlayerBullet>().PoisonDamage;

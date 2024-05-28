@@ -7,13 +7,14 @@ using static AlertSign;
 
 public class WolfBehave : MonoBehaviour
 {
+    public float lives;
     public float speed;
     public float dashSpeed;
     public float dashTime;
     public float longDist;
     public float triggerDist;
     public Transform[] patrolPoints;
-    public AlertSign alert;
+    //public AlertSign alert;
 
     private Rigidbody2D body;
     private Transform target;
@@ -23,10 +24,14 @@ public class WolfBehave : MonoBehaviour
     private bool restFlag = false;
     private float nextDecisionTime = 0f;
     private float decisionInterval = 1f; // интервал между рандомными решениями
+    private Transform _transform;
+    //private float xFlip = 1;
+    //private float yFlip = 1;
 
     // Start is called before the first frame update
     void Start()
     {
+        _transform = transform;
         body = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -47,7 +52,10 @@ public class WolfBehave : MonoBehaviour
                 nextDecisionTime = Time.time + decisionInterval;
             }
             dir = CalcDistance(patrolPoints[currentPoint].position.x, transform.position.x, speed);
+            //if (dir < 0) { _transform.localScale = new Vector2(1, 1); }
+            //else { _transform.localScale = new Vector2(-1, 1); }
             body.velocity = new Vector2(dir, body.velocity.y);
+
             if (Math.Abs(patrolPoints[currentPoint].position.x - transform.position.x) <= 1)
             {
                 currentPoint = Math.Abs(currentPoint - 1);
@@ -59,13 +67,18 @@ public class WolfBehave : MonoBehaviour
         else if (Math.Abs(target.position.x - transform.position.x) < longDist && Math.Abs(target.position.x - transform.position.x) > triggerDist && dashFlag)
         {
             dir = CalcDistance(target.position.x, transform.position.x, speed);
+            //if (dir < 0) { _transform.localScale = new Vector2(xFlip, yFlip); }
+            //else { _transform.localScale = new Vector2(-xFlip, yFlip); }
             body.velocity = new Vector2(dir, body.velocity.y);
+
         }
         // рывок
         else if (Math.Abs(target.position.x - transform.position.x) <= triggerDist && dashFlag)
         {
-            alert.Show();
+            //alert.Show();
             dir = CalcDistance(target.position.x, transform.position.x, dashSpeed);
+           // if (dir < 0) { _transform.localScale = new Vector2(xFlip, yFlip); }
+            //else { _transform.localScale = new Vector2(-xFlip, yFlip); }
             body.velocity = new Vector2(dir, body.velocity.y);
         }
 
@@ -73,6 +86,8 @@ public class WolfBehave : MonoBehaviour
         if (!dashFlag && restFlag)
         {
             dir = -CalcDistance(target.position.x, transform.position.x, speed);
+           // if (dir < 0) { _transform.localScale = new Vector2(xFlip, yFlip); }
+            //else { _transform.localScale = new Vector2(-xFlip, yFlip); }daad
             body.velocity = new Vector2(dir, body.velocity.y);
         }
 
@@ -82,7 +97,10 @@ public class WolfBehave : MonoBehaviour
             dashFlag = true;
         }
 
-
+        if (lives <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator DashCounter(float time)
@@ -96,15 +114,28 @@ public class WolfBehave : MonoBehaviour
         return (targetPosition > objPosition ? objSpeed : -objSpeed);
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    public void OnTriggerEnter2D(Collider2D col)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            alert.Hide();
-            dashFlag = false;
-            restFlag = false;
-            body.velocity = new Vector2(0, body.velocity.y);
-            StartCoroutine(DashCounter(dashTime));
+        float TakenDamage;
+        switch (col.tag)
+        { 
+            case "PlayerBullet": //если снаряд игрока
+                TakenDamage = GameObject.FindGameObjectWithTag("PlayerBullet").GetComponent<PlayerBullet>().Damage;
+                lives -= TakenDamage;
+                //animator.SetTrigger("Damaged");
+                break;
+            case "PlayerTongue": //если язык игрока
+                lives -= 3;
+                break;
+            case "Weapon": //если оружие
+                lives -= 3;
+                break;
+            case "Player": //если оружие
+                dashFlag = false;
+                restFlag = false;
+                body.velocity = new Vector2(0, body.velocity.y);
+                StartCoroutine(DashCounter(dashTime));
+                break;
         }
     }
 
