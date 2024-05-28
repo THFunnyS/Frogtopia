@@ -115,7 +115,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   effects: 9
   pickUpMutationButton: {fileID: 4439146077113514127}
-  SkillSwaper: {fileID: 0}
+  Canvas: {fileID: 7524225739132320598, guid: e55922bae4b126740a5d71d4a77b80a5, type: 3}
 --- !u!1 &4439146077113514127
 GameObject:
   m_ObjectHideFlags: 0
