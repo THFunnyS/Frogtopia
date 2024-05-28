@@ -18,6 +18,7 @@ public class EagleFlyBehindState : State
     public override void Enter()
     {
         base.Enter();
+        _enemy.animator.SetBool("FlyingUp", true);
     }
 
     public override void Exit()
@@ -33,6 +34,7 @@ public class EagleFlyBehindState : State
 
         if ((_enemy.transform.position - _target).magnitude < 0.1f)
         {
+            _enemy.animator.SetBool("FlyingUp", false);
             _enemy.SM.ChangeState(new EagleIdleState(_enemy));
         }
     }

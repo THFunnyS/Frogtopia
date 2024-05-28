@@ -27,7 +27,9 @@ public class EagleRestState : State
         base.Update();
 
         if (_leftTime <= 0)
+        {
             _enemy.SM.ChangeState(new EagleIdleState(_enemy));
+        }
         else
             _leftTime -= Time.deltaTime;
     }
