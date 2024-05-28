@@ -199,4 +199,4 @@ MonoBehaviour:
   Player: {fileID: 0}
   effects: 2
   pickUpMutationButton: {fileID: 325512937879904297}
-  Canvas: {fileID: 0}
+  Canvas: {fileID: 7524225739132320598, guid: e55922bae4b126740a5d71d4a77b80a5, type: 3}
